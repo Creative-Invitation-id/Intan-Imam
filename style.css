@@ -487,7 +487,8 @@ body {
   justify-content: center;
   display: flex;
   flex-direction: column;
-  overflow: visible; /* Prevent button clipping */
+  overflow: visible;
+  /* Prevent button clipping */
   gap: 0.3rem;
 }
 
@@ -497,7 +498,8 @@ body {
   justify-content: center;
   display: flex;
   flex-direction: column;
-  overflow: visible; /* Prevent button clipping */
+  overflow: visible;
+  /* Prevent button clipping */
   gap: 0.3rem;
 }
 
@@ -516,7 +518,8 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   cursor: pointer;
-  z-index: 50; /* Ensure clickable and on top */
+  z-index: 50;
+  /* Ensure clickable and on top */
 }
 
 .btn-location:hover {
@@ -546,7 +549,8 @@ body {
   padding-top: 5%;
   gap: 10px;
   position: relative;
-  z-index: 55; /* Higher than part-bottom */
+  z-index: 55;
+  /* Higher than part-bottom */
   overflow: visible;
 }
 
@@ -562,12 +566,14 @@ body {
 
 /* SLIDE 10 PARTS (TOP10: CENTER-BOTTOM, BOT10: CENTER-TOP) */
 .p10-part-top {
+  flex: 2;
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 5%;
 }
 
 .p10-part-bottom {
+  flex: 1;
   align-items: flex-start;
   justify-content: center;
   padding-top: 5%;
@@ -638,19 +644,20 @@ body {
 
 /* --- SLIDE 8: 3-PART WITH GALLERY BUTTON --- */
 .p8-part-top {
-  flex: 1;
+  flex: 25;
   align-items: center;
   justify-content: center;
+  object-fit: cover;
 }
 
 .p8-part-middle {
-  flex: 2;
+  flex: 65;
   align-items: center;
   justify-content: center;
 }
 
 .p8-part-bottom {
-  flex: 1;
+  flex: 10;
   align-items: center;
   justify-content: center;
 }
@@ -987,7 +994,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #cc9b59; /* Goldish Beige */
+  background: #cc9b59;
+  /* Goldish Beige */
   padding: 10px 20px;
   border-radius: 50px;
   width: 100%;
@@ -1048,9 +1056,11 @@ body {
   gap: 12px;
   width: 80%;
   align-items: center;
-  margin-top: -50px; /* Pull buttons up into the image */
+  margin-top: -50px;
+  /* Pull buttons up into the image */
   position: relative;
-  z-index: 60; /* Ensure buttons are on top */
+  z-index: 60;
+  /* Ensure buttons are on top */
 }
 
 .btn-rsvp {
@@ -1219,6 +1229,8 @@ body {
   height: auto;
   z-index: 15;
   pointer-events: none;
+  opacity: 1 !important;
+  animation: driftRightLeft 4s ease-in-out infinite;
 }
 
 .page2-frame-right {
@@ -1230,6 +1242,8 @@ body {
   height: auto;
   z-index: 15;
   pointer-events: none;
+  opacity: 1 !important;
+  animation: driftLeftRight 4s ease-in-out infinite;
 }
 
 .content-mid {
@@ -1289,4 +1303,55 @@ body {
   letter-spacing: 1px;
   margin-top: 3px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* --- SLIDE 2 FRAME ANIMATIONS --- */
+/* Animation keyframes for frame movements */
+
+
+@keyframes driftLeftRight {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+@keyframes driftRightLeft {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-8px);
+  }
+}
+
+/* --- SLIDE 10 FRAME POSITIONING \u0026 ANIMATIONS --- */
+.page10-frame-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35%;
+  height: auto;
+  z-index: 20;
+  pointer-events: none;
+  animation: driftRightLeft 4s ease-in-out infinite;
+}
+
+.page10-frame-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35%;
+  height: auto;
+  z-index: 20;
+  pointer-events: none;
+  animation: driftLeftRight 4s ease-in-out infinite;
 }
