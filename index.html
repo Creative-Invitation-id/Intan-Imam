@@ -20,7 +20,7 @@
 <body>
   <div class="mobile-wrapper">
     <audio id="bgMusic" loop>
-      <source src="assets/images/song.mp3" type="audio/mpeg" />
+      <source src="assets/song.mp3" type="audio/mpeg" />
     </audio>
 
     <div id="musicControl" class="music-control" onclick="toggleMusic()">
@@ -324,6 +324,18 @@
           });
         }
 
+        const STORAGE_KEY_TIME = "wedding_invitation_music_time";
+        let isMusicPlaying = false; // Track intended state
+
+        // Initialize music state on load
+        document.addEventListener('DOMContentLoaded', () => {
+          const bgMusic = document.getElementById("bgMusic");
+          const savedTime = localStorage.getItem(STORAGE_KEY_TIME);
+          if (savedTime) {
+            bgMusic.currentTime = parseFloat(savedTime);
+          }
+        });
+
         // 1. Fungsi khusus yang dipicu oleh tombol "Open Invitation"
         function openInvitation() {
           // Jalankan navigasi ke halaman pertama
@@ -333,30 +345,69 @@
           const bgMusic = document.getElementById("bgMusic");
           const musicControl = document.getElementById("musicControl");
 
-          bgMusic.currentTime = 0; // fix dari detik nol musiknya awalnya ini 17 detik
+          // Restore saved time if available, otherwise 0
+          const savedTime = localStorage.getItem(STORAGE_KEY_TIME);
+          bgMusic.currentTime = savedTime ? parseFloat(savedTime) : 0;
+
           bgMusic
             .play()
             .then(() => {
+              isMusicPlaying = true;
               musicControl.style.display = "flex"; // Munculkan tombol music
               document.getElementById("musicBox").classList.add("rotating");
             })
             .catch((error) => {
+              console.log("Autoplay failed/blocked", error);
               // Jika tetap diblokir, tombol muncul agar user bisa klik manual
               musicControl.style.display = "flex";
             });
         }
 
         function toggleMusic() {
+          const bgMusic = document.getElementById("bgMusic");
+          const musicControl = document.getElementById("musicIcon");
+          const musicBox = document.getElementById("musicBox");
+
           if (bgMusic.paused) {
             bgMusic.play();
-            musicIcon.innerText = "🔊";
+            isMusicPlaying = true;
+            musicControl.innerText = "🔊";
             musicBox.classList.add("rotating");
           } else {
             bgMusic.pause();
-            musicIcon.innerText = "🔇";
+            isMusicPlaying = false;
+            musicControl.innerText = "🔇";
             musicBox.classList.remove("rotating");
           }
         }
+
+        // Save time continuously
+        document.getElementById("bgMusic").addEventListener("timeupdate", () => {
+          const bgMusic = document.getElementById("bgMusic");
+          localStorage.setItem(STORAGE_KEY_TIME, bgMusic.currentTime);
+        });
+
+        // Handle Tab Visibility (Pause on hide, Resume on show)
+        document.addEventListener("visibilitychange", () => {
+          const bgMusic = document.getElementById("bgMusic");
+          const musicBox = document.getElementById("musicBox");
+          
+          if (document.hidden) {
+            // If tab is hidden, pause music but keep 'isMusicPlaying' true if it WAS playing
+            // so we know to resume it later.
+            if (!bgMusic.paused) {
+              bgMusic.pause();
+              isMusicPlaying = true; // Mark that it SHOULD be playing
+              musicBox.classList.remove("rotating"); // Visual pause
+            }
+          } else {
+            // If tab is visible again, and it was supposed to be playing, resume
+            if (isMusicPlaying) {
+              bgMusic.play().catch(e => console.log("Resume blocked", e));
+              musicBox.classList.add("rotating");
+            }
+          }
+        });
 
         let currentPageIndex = 0; // Track current page
 
