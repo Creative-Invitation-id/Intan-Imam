@@ -145,6 +145,25 @@
           <div class="split-container-2parts">
             <div id="p6Div1" class="section-part-2 p6-part-top" style="opacity: 0">
               <img src="assets/images/slide6/content-top6.png" class="content-image" />
+              <!-- Countdown Container inside p6Div1 -->
+               <div id="countdown" class="countdown-container">
+                <div class="countdown-item">
+                  <span id="days" class="countdown-number">00</span>
+                  <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                  <span id="hours" class="countdown-number">00</span>
+                  <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                   <span id="minutes" class="countdown-number">00</span>
+                   <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                   <span id="seconds" class="countdown-number">00</span>
+                   <span class="countdown-label">Seconds</span>
+                </div>
+               </div>
             </div>
 
             <div id="p6Div2" class="section-part-2 p6-part-bottom" style="opacity: 0">
@@ -223,7 +242,23 @@
             </div>
 
             <div id="p9Div2" class="section-part-2 p9-part-bottom" style="opacity: 0">
-              <img src="assets/images/slide9/bot9.png" class="content-image" />
+               <div class="gift-container">
+                  <div class="bank-card">
+                    <p class="bank-name">Intan Nur Avivah / BCA</p>
+                    <div class="account-box">
+                      <span class="account-number">0502266380</span>
+                      <button class="btn-copy" onclick="copyToClipboard('0502266380')">Salin</button>
+                    </div>
+                  </div>
+
+                  <div class="bank-card">
+                    <p class="bank-name">Imam Turmudhi / BCA</p>
+                    <div class="account-box">
+                      <span class="account-number">0500850451</span>
+                      <button class="btn-copy" onclick="copyToClipboard('0500850451')">Salin</button>
+                    </div>
+                  </div>
+               </div>
             </div>
           </div>
 
@@ -596,6 +631,39 @@
             }, 400);
           }
         }
+
+        // --- Save The Date Countdown Logic ---
+        function startCountdown() {
+          const targetDate = new Date("March 3, 2026 00:00:00").getTime();
+          
+          if (isNaN(targetDate)) return; // Safety check
+
+          const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+              clearInterval(timer);
+               document.getElementById("countdown").innerHTML = "The Wedding Has Passed";
+               return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Update UI with leading zero
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+          }, 1000);
+        }
+
+        // Start countdown immediately
+        startCountdown();
       </script>
 </body>
 
