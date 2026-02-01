@@ -48,15 +48,15 @@ body {
 /* --- PAGES CONTAINER (Horizontal Slide) --- */
 .pages {
   display: flex;
-  flex-direction: row;
-  width: 1000%; 
-  height: 100%;
+  flex-direction: column;
+  width: 100%; 
+  height: 900%;
   transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .page {
-  width: 10%; 
-  height: 100%;
+  width: 100%; 
+  height: 11.1111%;
   position: relative;
   flex-shrink: 0;
   background: #fff;
@@ -378,34 +378,7 @@ body {
   z-index: 100;
 }
 
-/* --- PAGE 6: FIT TO SCREEN --- */
-#page6 .page-inner {
-  /* Menghilangkan padding agar gambar bisa benar-benar fit ke bawah jika perlu */
-  padding-bottom: 0; 
-  justify-content: center; /* Memastikan konten tetap di tengah secara vertikal */
-}
 
-#page6 .content-wrapper {
-  width: 100%;
-  height: 100%; /* Mengambil tinggi penuh */
-  display: flex;
-  align-items: center; /* Center vertikal */
-  justify-content: center; /* Center horizontal */
-}
-
-#page6 .full-content-img {
-  width: 100%;
-  height: 100%;
-  /* object-fit: cover akan membuat gambar memenuhi layar (mungkin terpotong sedikit) */
-  /* object-fit: contain akan membuat seluruh gambar terlihat tanpa terpotong */
-  object-fit: cover; 
-}
-
-/* Pastikan navigasi tetap berada di atas gambar */
-#page6 .nav-group {
-  z-index: 100;
-  bottom: 25px; /* Jarak dari bawah layar */
-}
 
 /* --- PAGE 7: MAPS --- */
 .btn-maps {
@@ -505,8 +478,8 @@ body {
   pointer-events: none;
 }
 
-/* --- PAGE 10: CLOSING --- */
-#page10 .page-inner {
+/* --- PAGE 9: CLOSING --- */
+#page9 .page-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
