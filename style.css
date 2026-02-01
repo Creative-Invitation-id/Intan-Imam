@@ -371,10 +371,12 @@ body {
 .p3-part-bottom {
   flex: 1;
   /* Ratio 1 */
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  /* Align to top */
-  justify-content: flex-start;
   /* Align to left */
+  justify-content: flex-start;
+  /* Align to top */
   padding-left: 5%;
   /* Push content to the left */
   padding-top: 0;
@@ -402,13 +404,50 @@ body {
 .p4-part-bottom {
   flex: 1;
   /* Ratio 1 */
-  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* Align to right */
+  justify-content: flex-start;
   /* Align to top */
-  justify-content: flex-end;
-  /* Align to right (mirrored from slide 3) */
   padding-right: 5%;
   /* Push content to the right */
   padding-top: 0;
+}
+
+/* --- INSTAGRAM BUTTONS FOR SLIDES 3 & 4 --- */
+.btn-instagram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(188, 24, 136, 0.3);
+}
+
+.btn-instagram:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(188, 24, 136, 0.5);
+}
+
+.btn-instagram svg {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  width: 16px;
+  height: 16px;
+}
+
+.btn-instagram-left {
+  margin-left: 3%;
+}
+
+.btn-instagram-right {
+  margin-right: 3%;
 }
 
 /* CONTENT IMAGES */
@@ -1139,7 +1178,8 @@ body {
 /* --- COUNTDOWN TIMER & SLIDE 6 --- */
 .p6-part-top {
   display: flex !important;
-  flex-direction: column !important; /* Force vertical stacking */
+  flex-direction: column !important;
+  /* Force vertical stacking */
   align-items: center;
   justify-content: center;
 }
@@ -1159,11 +1199,11 @@ body {
 }
 
 .countdown-number {
-  font-family: "Playfair", serif; 
+  font-family: "Playfair", serif;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #fff; 
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   line-height: 1.1;
 }
 
@@ -1174,5 +1214,5 @@ body {
   color: #eee;
   letter-spacing: 1px;
   margin-top: 3px;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
