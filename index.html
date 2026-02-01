@@ -56,7 +56,7 @@
             </div>
 
             <button id="btnNext2" class="btn-next-round" style="opacity: 0" onclick="goToPage(2)">
-              <span>➜</span>
+              <span style="display: inline-block; transform: rotate(90deg)">➜</span>
             </button>
           </div>
         </section>
@@ -76,10 +76,10 @@
 
             <div id="btnNav3" class="nav-group" style="opacity: 0">
               <button class="btn-nav-small" onclick="goToPage(1)">
-                <span style="display: inline-block; transform: scaleX(-1)">➜</span>
+                <span style="display: inline-block; transform: rotate(-90deg)">➜</span>
               </button>
               <button class="btn-nav-small" onclick="goToPage(3)">
-                <span>➜</span>
+                <span style="display: inline-block; transform: rotate(90deg)">➜</span>
               </button>
             </div>
           </div>
@@ -108,10 +108,10 @@
 
             <div class="nav-group" id="btnNav4" style="opacity: 0">
               <button class="btn-nav-small" onclick="goToPage(2)">
-                <span style="transform: scaleX(-1)">➜</span>
+                <span style="transform: rotate(-90deg); display: inline-block">➜</span>
               </button>
               <button class="btn-nav-small" onclick="goToPage(4)">
-                <span>➜</span>
+                <span style="transform: rotate(90deg); display: inline-block">➜</span>
               </button>
             </div>
           </div>
@@ -131,27 +131,38 @@
 
             <div class="nav-group" id="btnNav5" style="opacity: 0">
               <button class="btn-nav-small" onclick="goToPage(3)">
-                <span style="transform: scaleX(-1)">➜</span>
+                <span style="transform: rotate(-90deg); display: inline-block">➜</span>
               </button>
               <button class="btn-nav-small" onclick="goToPage(5)">
-                <span>➜</span>
+                <span style="transform: rotate(90deg); display: inline-block">➜</span>
               </button>
             </div>
           </div>
         </section>
 
+
+
         <section class="page" id="page6">
           <div class="page-inner">
-            <div id="content6Wrapper" class="content-wrapper" style="opacity: 0">
-              <img src="assets/images/slide6/content-6.png" class="full-content-img" alt="Content 6" />
+            <div class="split-container">
+              <div id="p6Div1" class="section-part p7-top-part" style="opacity: 0">
+                <img src="assets/images/slide7/top-content-7.png" class="ornament" />
+                <a href="https://maps.app.goo.gl/JZX4XK87BjmtHToX7?g_st=ic" target="_blank" class="btn-maps"> <span class="icon-maps">📍</span> Buka Maps </a>
+              </div>
+              <div id="p6Div2" class="section-part p7-mid-part" style="opacity: 0">
+                <img src="assets/images/slide7/mid-content-7.png" class="ornament-divider" />
+              </div>
+              <div id="p6Div3" class="section-part p7-bot-part" style="opacity: 0">
+                <img src="assets/images/slide7/bot-content-7.png" class="ornament" />
+              </div>
             </div>
 
-            <div class="nav-group" id="btnNav6" style="opacity: 0">
+            <div id="btnNav6" class="nav-group" style="opacity: 0">
               <button class="btn-nav-small" onclick="goToPage(4)">
-                <span style="display: inline-block; transform: scaleX(-1)">➜</span>
+                <span style="display: inline-block; transform: rotate(-90deg)">➜</span>
               </button>
               <button class="btn-nav-small" onclick="goToPage(6)">
-                <span>➜</span>
+                <span style="display: inline-block; transform: rotate(90deg)">➜</span>
               </button>
             </div>
           </div>
@@ -159,40 +170,14 @@
 
         <section class="page" id="page7">
           <div class="page-inner">
-            <div class="split-container">
-              <div id="p7Div1" class="section-part p7-top-part" style="opacity: 0">
-                <img src="assets/images/slide7/top-content-7.png" class="ornament" />
-                <a href="https://maps.app.goo.gl/JZX4XK87BjmtHToX7?g_st=ic" target="_blank" class="btn-maps"> <span class="icon-maps">📍</span> Buka Maps </a>
-              </div>
-              <div id="p7Div2" class="section-part p7-mid-part" style="opacity: 0">
-                <img src="assets/images/slide7/mid-content-7.png" class="ornament-divider" />
-              </div>
-              <div id="p7Div3" class="section-part p7-bot-part" style="opacity: 0">
-                <img src="assets/images/slide7/bot-content-7.png" class="ornament" />
-              </div>
-            </div>
-
-            <div id="btnNav7" class="nav-group" style="opacity: 0">
-              <button class="btn-nav-small" onclick="goToPage(5)">
-                <span style="transform: scaleX(-1)">➜</span>
-              </button>
-              <button class="btn-nav-small" onclick="goToPage(7)">
-                <span>➜</span>
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section class="page" id="page8">
-          <div class="page-inner">
-            <img src="assets/images/slide8/frame-8.png" id="frame8" class="frame-top" alt="Frame 8" />
+            <img src="assets/images/slide8/frame-8.png" id="frame7" class="frame-top" alt="Frame 8" />
 
             <div class="split-container">
-              <div id="p8Div1" class="section-part" style="opacity: 0">
+              <div id="p7Div1" class="section-part" style="opacity: 0">
                 <img src="assets/images/slide8/content1-8.png" class="ornament" />
               </div>
 
-              <div id="p8Div2" class="section-part gift-container" style="opacity: 0">
+              <div id="p7Div2" class="section-part gift-container" style="opacity: 0">
                 <div class="bank-card">
                   <p class="bank-name">Bank BCA</p>
                   <p class="bank-number">7660592193</p>
@@ -208,34 +193,34 @@
                 </div>
               </div>
 
-              <div id="p8Div3" class="section-part" style="opacity: 0"></div>
+              <div id="p7Div3" class="section-part" style="opacity: 0"></div>
             </div>
 
-            <div id="btnNav8" class="nav-group" style="opacity: 0">
-              <button class="btn-nav-small" onclick="goToPage(6)">
-                <span style="transform: scaleX(-1)">➜</span>
+            <div id="btnNav7" class="nav-group" style="opacity: 0">
+              <button class="btn-nav-small" onclick="goToPage(5)">
+                <span style="transform: rotate(-90deg); display: inline-block">➜</span>
               </button>
-              <button class="btn-nav-small" onclick="goToPage(8)">
-                <span>➜</span>
+              <button class="btn-nav-small" onclick="goToPage(7)">
+                <span style="transform: rotate(90deg); display: inline-block">➜</span>
               </button>
             </div>
           </div>
         </section>
 
-        <section class="page" id="page9">
+        <section class="page" id="page8">
           <div class="page-inner">
-            <img src="assets/images/slide9/frame-9.png" id="frame9" class="frame-top" style="opacity: 0" alt="Frame 9" />
+            <img src="assets/images/slide9/frame-9.png" id="frame8" class="frame-top" style="opacity: 0" alt="Frame 9" />
 
             <div class="split-container">
-              <div id="p9Div1" class="section-part" style="opacity: 0">
+              <div id="p8Div1" class="section-part" style="opacity: 0">
                 <img src="assets/images/slide9/content1-9.png" class="ornament" />
               </div>
 
-              <div id="p9Div2" class="section-part" style="opacity: 0; padding-bottom: 0">
+              <div id="p8Div2" class="section-part" style="opacity: 0; padding-bottom: 0">
                 <img src="assets/images/slide9/content2-9.png" class="ornament" />
               </div>
 
-              <div id="p9Div3" class="section-part p9-bot-part" style="opacity: 0">
+              <div id="p8Div3" class="section-part p9-bot-part" style="opacity: 0">
                 <div class="btn-group-rsvp">
                   <a
                     href="https://api.whatsapp.com/send?phone=6281360581748&text=Permisi%2C%20saya%20%5BIsi%20Nama%20Anda%5D%20ingin%20mengonfirmasi%20kehadiran%20pada%20acara%20pernikahan.%20Saya%20akan%20hadir%20bersama%20%5BMax.2%5D%20orang%20lainnya.%20Terima%20kasih%20atas%20undangannya."
@@ -256,18 +241,18 @@
               </div>
             </div>
 
-            <div id="btnNav9" class="nav-group" style="opacity: 0">
-              <button class="btn-nav-small" onclick="goToPage(7)">
-                <span style="transform: scaleX(-1)">➜</span>
+            <div id="btnNav8" class="nav-group" style="opacity: 0">
+              <button class="btn-nav-small" onclick="goToPage(6)">
+                <span style="transform: rotate(-90deg); display: inline-block">➜</span>
               </button>
-              <button class="btn-nav-small" onclick="goToPage(9)">
-                <span>➜</span>
+              <button class="btn-nav-small" onclick="goToPage(8)">
+                <span style="transform: rotate(90deg); display: inline-block">➜</span>
               </button>
             </div>
           </div>
         </section>
 
-        <section class="page" id="page10">
+        <section class="page" id="page9">
           <div class="page-inner">
             <div class="img-last-container" id="lastImageContent" style="opacity: 0">
               <div class="image-stack">
@@ -275,9 +260,9 @@
               </div>
             </div>
 
-            <div class="nav-group" id="btnNav10" style="opacity: 0">
-              <button class="btn-nav-small" onclick="goToPage(8)">
-                <span style="transform: scaleX(-1)">➜</span>
+            <div class="nav-group" id="btnNav9" style="opacity: 0">
+              <button class="btn-nav-small" onclick="goToPage(7)">
+                <span style="display: inline-block; transform: rotate(-90deg)">➜</span>
               </button>
             </div>
           </div>
@@ -328,7 +313,7 @@
 
       function goToPage(index) {
         const container = document.getElementById("pagesContainer");
-        container.style.transform = `translateX(-${index * 10}%)`;
+        container.style.transform = `translateY(-${index * (100 / 9)}%)`;
 
         /* ================= PAGE 2 (Index 1) ================= */
         if (index === 1) {
@@ -406,23 +391,31 @@
           }, 400);
         }
 
-        /* ================= PAGE 6 (Index 5) ================= */
+        /* ================= PAGE 6 MAPS (Index 5) ================= */
         if (index === 5) {
-          const content6 = document.getElementById("content6Wrapper");
+          const div1 = document.getElementById("p6Div1");
+          const div2 = document.getElementById("p6Div2");
+          const div3 = document.getElementById("p6Div3");
           const nav6 = document.getElementById("btnNav6");
 
-          content6.classList.remove("anim-fade");
+          [div1, div2, div3].forEach((el) => el.classList.remove("anim-fade"));
           nav6.classList.remove("anim-fade-center");
 
           setTimeout(() => {
-            content6.classList.add("anim-fade");
+            div1.classList.add("anim-fade");
             setTimeout(() => {
-              nav6.classList.add("anim-fade-center");
+              div2.classList.add("anim-fade");
+              setTimeout(() => {
+                div3.classList.add("anim-fade");
+                setTimeout(() => {
+                  nav6.classList.add("anim-fade-center");
+                }, 500);
+              }, 600);
             }, 600);
           }, 400);
         }
 
-        /* ================= PAGE 7 (Index 6) ================= */
+        /* ================= PAGE 7 GIFT (Index 6) ================= */
         if (index === 6) {
           const div1 = document.getElementById("p7Div1");
           const div2 = document.getElementById("p7Div2");
@@ -446,21 +439,28 @@
           }, 400);
         }
 
+        /* ================= PAGE 8 RSVP (Index 7) ================= */
         if (index === 7) {
           const div1 = document.getElementById("p8Div1");
           const div2 = document.getElementById("p8Div2");
           const div3 = document.getElementById("p8Div3");
+          const frame8 = document.getElementById("frame8");
           const nav8 = document.getElementById("btnNav8");
 
-          [div1, div2, div3].forEach((el) => el.classList.remove("anim-fade"));
+          // Reset Animasi agar bisa diulang saat navigasi balik
+          [div1, div2, div3, frame8].forEach((el) => el.classList.remove("anim-fade"));
           nav8.classList.remove("anim-fade-center");
 
           setTimeout(() => {
+            frame8.classList.add("anim-fade");
             div1.classList.add("anim-fade");
+
             setTimeout(() => {
               div2.classList.add("anim-fade");
+
               setTimeout(() => {
                 div3.classList.add("anim-fade");
+
                 setTimeout(() => {
                   nav8.classList.add("anim-fade-center");
                 }, 500);
@@ -469,45 +469,18 @@
           }, 400);
         }
 
+        /* ================= PAGE 9 LAST (Index 8) ================= */
         if (index === 8) {
-          const div1 = document.getElementById("p9Div1");
-          const div2 = document.getElementById("p9Div2");
-          const div3 = document.getElementById("p9Div3");
-          const frame9 = document.getElementById("frame9");
+          const lastImg = document.getElementById("lastImageContent");
           const nav9 = document.getElementById("btnNav9");
 
-          // Reset Animasi agar bisa diulang saat navigasi balik
-          [div1, div2, div3, frame9].forEach((el) => el.classList.remove("anim-fade"));
-          nav9.classList.remove("anim-fade-center");
-
-          setTimeout(() => {
-            frame9.classList.add("anim-fade");
-            div1.classList.add("anim-fade");
-
-            setTimeout(() => {
-              div2.classList.add("anim-fade");
-
-              setTimeout(() => {
-                div3.classList.add("anim-fade");
-
-                setTimeout(() => {
-                  nav9.classList.add("anim-fade-center");
-                }, 500);
-              }, 600);
-            }, 600);
-          }, 400);
-        }
-        if (index === 9) {
-          const lastImg = document.getElementById("lastImageContent");
-          const nav10 = document.getElementById("btnNav10");
-
           lastImg.classList.remove("anim-fade");
-          nav10.classList.remove("anim-fade-center");
+          nav9.classList.remove("anim-fade-center");
 
           setTimeout(() => {
             lastImg.classList.add("anim-fade");
             setTimeout(() => {
-              nav10.classList.add("anim-fade-center");
+              nav9.classList.add("anim-fade-center");
             }, 600);
           }, 400);
         }
