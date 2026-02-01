@@ -41,9 +41,14 @@
         </section>
 
         <section class="page" id="page2">
+          <img src="assets/images/slide2/background2.png" class="page2-bg anim-fade" alt="Background" />
+          <img src="assets/images/slide2/frame-bot2.png" class="page2-frame-top anim-fade" alt="Top Decoration" />
+          <img src="assets/images/slide2/frame-left2.png" class="page2-frame-left anim-fade" alt="Left Frame" />
+          <img src="assets/images/slide2/frame-right2.png" class="page2-frame-right anim-fade" alt="Right Frame" />
+
           <div class="page-inner">
             <div id="content2Wrapper" class="content-wrapper" style="opacity: 0">
-              <img src="assets/images/slide2/content-2.png" class="full-content-img" alt="Content 2" />
+              <img src="assets/images/slide2/content-mid2.png" class="content-mid" alt="Content" />
             </div>
 
             <button id="btnNext2" class="btn-next-round" style="opacity: 0" onclick="goToPage(2)">
@@ -307,14 +312,19 @@
         container.style.transform = `translateY(-${index * (100 / 9)}%)`;
 
         /* ================= PAGE 2 (Index 1) ================= */
+        /* ================= PAGE 2 (Index 1) ================= */
         if (index === 1) {
           const content = document.getElementById("content2Wrapper");
           const button = document.getElementById("btnNext2");
+          // Select all new decorative elements in Page 2
+          const elementsToAnimate = document.querySelectorAll("#page2 .page2-bg, #page2 .page2-frame-top, #page2 .page2-frame-left, #page2 .page2-frame-right");
 
           content.classList.remove("anim-fade");
           button.classList.remove("anim-fade-center");
+          elementsToAnimate.forEach(el => el.classList.remove("anim-fade"));
 
           setTimeout(() => {
+            elementsToAnimate.forEach(el => el.classList.add("anim-fade"));
             content.classList.add("anim-fade");
             button.classList.add("anim-fade-center");
           }, 600);
