@@ -1,491 +1,602 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="The Wedding of Giofazil & Yoana" />
-    <meta property="og:description" content="You are cordially invited to our wedding celebration." />
-    <meta property="og:image" content="http://giofazil-yoana.vercel.app/assets/images/slide10/animasi.jpeg" />
-    <meta property="og:url" content="http://giofazil-yoana.vercel.app" />
 
-    <!-- Optional tapi disarankan -->
-    <meta property="og:site_name" content="Wedding Invitation" />
-    <title>Giofazil-Yoana Wedding Invitation</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="mobile-wrapper">
-      <audio id="bgMusic" loop>
-        <source src="assets/images/song.mp3" type="audio/mpeg" />
-      </audio>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="The Wedding of Giofazil & Yoana" />
+  <meta property="og:description" content="You are cordially invited to our wedding celebration." />
+  <meta property="og:image" content="http://giofazil-yoana.vercel.app/assets/images/slide10/animasi.jpeg" />
+  <meta property="og:url" content="http://giofazil-yoana.vercel.app" />
 
-      <div id="musicControl" class="music-control" onclick="toggleMusic()">
-        <div class="music-box" id="musicBox">
-          <span id="musicIcon">🔊</span>
-        </div>
+  <!-- Optional tapi disarankan -->
+  <meta property="og:site_name" content="Wedding Invitation" />
+  <title>Giofazil-Yoana Wedding Invitation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="mobile-wrapper">
+    <audio id="bgMusic" loop>
+      <source src="assets/images/song.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div id="musicControl" class="music-control" onclick="toggleMusic()">
+      <div class="music-box" id="musicBox">
+        <span id="musicIcon">🔊</span>
       </div>
-      <div class="pages" id="pagesContainer">
-        <section class="page cover">
-          <img src="assets/images/slide1/background1.png" class="cover-bg anim-fade" alt="Background" />
-          <img src="assets/images/slide1/frame-top1.png" class="frame-top anim-fade" alt="Frame Top" />
-          
-          <img src="assets/images/slide1/frame-left1.png" class="frame-side-left anim-fade" alt="Frame Left" />
-          <img src="assets/images/slide1/frame-right1.png" class="frame-side-right anim-fade" alt="Frame Right" />
-          <img src="assets/images/slide1/frame-bot1.png" class="frame-bottom-gunungan anim-fade" alt="Gunungan" />
+    </div>
+    <div class="pages" id="pagesContainer">
+      <section class="page cover">
+        <img src="assets/images/slide1/background1.png" class="cover-bg" alt="Background" />
+        <img src="assets/images/slide1/frame-top1.png" class="frame-top anim-fade" alt="Frame Top" />
 
-          <div class="cover-content anim-fade delay-1">
-            <button class="btn-open" onclick="openInvitation()">Open Invitation</button>
+        <img src="assets/images/slide1/frame-left1.png" class="frame-side-left anim-fade" alt="Frame Left" />
+        <img src="assets/images/slide1/frame-right1.png" class="frame-side-right anim-fade" alt="Frame Right" />
+        <img src="assets/images/slide1/frame-bot1.png" class="frame-bottom-gunungan anim-fade" alt="Gunungan" />
+
+        <div class="cover-content anim-fade delay-1">
+          <button class="btn-open" onclick="openInvitation()">Open Invitation</button>
+        </div>
+      </section>
+
+      <section class="page" id="page2">
+        <img src="assets/images/slide2/background2.png" class="cover-bg" alt="Background" />
+        <img src="assets/images/slide2/frame-bot2.png" class="page2-frame-top anim-fade" alt="Top Decoration" />
+        <img src="assets/images/slide2/frame-left2.png" class="page2-frame-left anim-fade" alt="Left Frame" />
+        <img src="assets/images/slide2/frame-right2.png" class="page2-frame-right anim-fade" alt="Right Frame" />
+
+        <div class="page-inner">
+          <div id="content2Wrapper" class="content-wrapper" style="opacity: 0">
+            <img src="assets/images/slide2/content-mid2.png" class="content-mid" alt="Content" />
           </div>
-        </section>
 
-        <section class="page" id="page2">
-          <img src="assets/images/slide2/background2.png" class="page2-bg anim-fade" alt="Background" />
-          <img src="assets/images/slide2/frame-bot2.png" class="page2-frame-top anim-fade" alt="Top Decoration" />
-          <img src="assets/images/slide2/frame-left2.png" class="page2-frame-left anim-fade" alt="Left Frame" />
-          <img src="assets/images/slide2/frame-right2.png" class="page2-frame-right anim-fade" alt="Right Frame" />
+          <button id="btnNext2" class="btn-next-round" style="opacity: 0" onclick="goToPage(2)">
+            <span style="display: inline-block; transform: rotate(90deg)">➜</span>
+          </button>
+        </div>
+      </section>
 
-          <div class="page-inner">
-            <div id="content2Wrapper" class="content-wrapper" style="opacity: 0">
-              <img src="assets/images/slide2/content-mid2.png" class="content-mid" alt="Content" />
+      <section class="page" id="page3">
+        <img src="assets/images/background.png" class="page-bg-static" alt="Background" />
+        <div class="page-inner">
+          <div class="split-container-3parts">
+            <div id="p3Div1" class="section-part-3 p3-part-top" style="opacity: 0">
+              <img src="assets/images/slide3/content1:3-3.png" class="content-image" />
             </div>
 
-            <button id="btnNext2" class="btn-next-round" style="opacity: 0" onclick="goToPage(2)">
+            <div id="p3Div2" class="section-part-3 p3-part-middle" style="opacity: 0">
+              <img src="assets/images/slide3/content2:3-3.png" class="content-image" />
+            </div>
+
+            <div id="p3Div3" class="section-part-3 p3-part-bottom" style="opacity: 0">
+              <img src="assets/images/slide3/content3:3-3.png" class="content-image" />
+            </div>
+          </div>
+
+          <div id="btnNav3" class="nav-group" style="opacity: 0">
+            <button class="btn-nav-small" onclick="goToPage(1)">
+              <span style="display: inline-block; transform: rotate(-90deg)">➜</span>
+            </button>
+            <button class="btn-nav-small" onclick="goToPageHorizontal(3)">
               <span style="display: inline-block; transform: rotate(90deg)">➜</span>
             </button>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="page" id="page3">
-          <div class="page-inner">
-            <div class="split-container">
-              <div id="p3Div1" class="section-part p3-top-part p3-div-top" style="opacity: 0">
-                <img src="assets/images/slide3/content1-3.png" class="ornament content-kecil" />
-              </div>
-
-              <div id="p3Div2" class="section-part p3-bot-part p3-div-bot" style="opacity: 0">
-                <img src="assets/images/slide3/content2-3.png" class="ornament" />
-                <img src="assets/images/slide3/frame-bot-3.png" id="frameBot3" class="frame-bot-inside" style="opacity: 0" />
-              </div>
+      <section class="page" id="page4">
+        <img src="assets/images/background.png" class="page-bg-static" alt="Background" />
+        <div class="page-inner">
+          <div class="split-container-3parts">
+            <div id="p4Div1" class="section-part-3 p4-part-top" style="opacity: 0">
+              <img src="assets/images/slide4/content1:3-4.png" class="content-image" />
             </div>
 
-            <div id="btnNav3" class="nav-group" style="opacity: 0">
-              <button class="btn-nav-small" onclick="goToPage(1)">
-                <span style="display: inline-block; transform: rotate(-90deg)">➜</span>
-              </button>
-              <button class="btn-nav-small" onclick="goToPage(3)">
-                <span style="display: inline-block; transform: rotate(90deg)">➜</span>
-              </button>
+            <div id="p4Div2" class="section-part-3 p4-part-middle" style="opacity: 0">
+              <img src="assets/images/slide4/content2:3-4.png" class="content-image" />
+            </div>
+
+            <div id="p4Div3" class="section-part-3 p4-part-bottom" style="opacity: 0">
+              <img src="assets/images/slide4/content3:3-4.png" class="content-image" />
             </div>
           </div>
-        </section>
 
-        <section class="page" id="page4">
-          <div class="page-inner">
-            <div class="slide4-wrapper">
-              <img src="assets/images/slide4/frame-left-4.png" class="frame-left curtain-drift-left" alt="" />
-              <img src="assets/images/slide4/frame-right-4.png" class="frame-right curtain-drift-right" alt="" />
+          <div class="nav-group" id="btnNav4" style="opacity: 0">
+            <button class="btn-nav-small" onclick="goToPageHorizontal(2)">
+              <span style="transform: rotate(-90deg); display: inline-block">➜</span>
+            </button>
+            <button class="btn-nav-small" onclick="goToPage(4)">
+              <span style="transform: rotate(90deg); display: inline-block">➜</span>
+            </button>
+          </div>
+        </div>
+      </section>
 
-              <div id="p4Content" class="slide4-content" style="opacity: 0">
-                <img src="assets/images/slide4/header-4.png" class="frame-middle" />
-
-                <div class="name-block">
-                  <h3>Giofazil Afqaf Azzumarsyach, S.Tr.Par</h3>
-                  <p>Putra Bapak Syachriwan & Ibu Yuningsih</p>
-                </div>
-
-                <div class="name-block">
-                  <h3>Yoana Maria Bukit, S.Tr.Par</h3>
-                  <p>Putri Bapak Jujuren Immanuel Bukit & Ibu Anita Tarigan</p>
-                </div>
-              </div>
+      <section class="page" id="page5">
+        <img src="assets/images/background.png" class="page-bg-static" alt="Background" />
+        <div class="page-inner">
+          <div class="split-container-2parts">
+            <div id="p5Div1" class="section-part-2 p5-part-top" style="opacity: 0">
+              <img src="assets/images/slide5/content-top5.png" class="content-image" />
             </div>
 
-            <div class="nav-group" id="btnNav4" style="opacity: 0">
-              <button class="btn-nav-small" onclick="goToPage(2)">
-                <span style="transform: rotate(-90deg); display: inline-block">➜</span>
-              </button>
-              <button class="btn-nav-small" onclick="goToPage(4)">
-                <span style="transform: rotate(90deg); display: inline-block">➜</span>
-              </button>
+            <div id="p5Div2" class="section-part-2 p5-part-bottom" style="opacity: 0">
+              <img src="assets/images/slide5/content-bot5.png" class="content-image" />
             </div>
           </div>
-        </section>
 
-        <section class="page" id="page5">
-          <div class="page-inner">
-            <div id="p5Top" class="p5-block p5-top" style="opacity: 0">
-              <img src="assets/images/slide5/content1-5.png" class="p5-img" />
-            </div>
-            <div id="p5Mid" class="p5-block p5-middle" style="opacity: 0">
-              <img src="assets/images/slide5/content2-5.png" class="p5-img" />
-            </div>
-            <div id="p5Bot" class="p5-block p5-bottom" style="opacity: 0">
-              <img src="assets/images/slide5/content3-5.png" class="p5-img" />
+          <div class="nav-group" id="btnNav5" style="opacity: 0">
+            <button class="btn-nav-small" onclick="goToPage(3)">
+              <span style="transform: rotate(-90deg); display: inline-block">➜</span>
+            </button>
+            <button class="btn-nav-small" onclick="goToPage(5)">
+              <span style="transform: rotate(90deg); display: inline-block">➜</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page6">
+        <img src="assets/images/background.png" class="page-bg-static" alt="Background" />
+        <div class="page-inner">
+          <div class="split-container-2parts">
+            <div id="p6Div1" class="section-part-2 p6-part-top" style="opacity: 0">
+              <img src="assets/images/slide6/content-top6.png" class="content-image" />
             </div>
 
-            <div class="nav-group" id="btnNav5" style="opacity: 0">
-              <button class="btn-nav-small" onclick="goToPage(3)">
-                <span style="transform: rotate(-90deg); display: inline-block">➜</span>
-              </button>
-              <button class="btn-nav-small" onclick="goToPage(5)">
-                <span style="transform: rotate(90deg); display: inline-block">➜</span>
-              </button>
+            <div id="p6Div2" class="section-part-2 p6-part-bottom" style="opacity: 0">
+              <img src="assets/images/slide6/content-bot6.png" class="content-image" />
             </div>
           </div>
-        </section>
 
+          <div class="nav-group" id="btnNav6" style="opacity: 0">
+            <button class="btn-nav-small" onclick="goToPage(4)">
+              <span style="transform: rotate(-90deg); display: inline-block">➜</span>
+            </button>
+            <button class="btn-nav-small" onclick="goToPage(6)">
+              <span style="transform: rotate(90deg); display: inline-block">➜</span>
+            </button>
+          </div>
+        </div>
+      </section>
 
+      <section class="page" id="page7">
+        <img src="assets/images/background.png" class="page-bg-static" alt="Background" />
+        <div class="page-inner">
+          <img src="assets/images/slide7/frame-left7.png" id="frameLeft7" class="frame-corner-left" alt="Frame Left" />
+          <img src="assets/images/slide7/frame-right7.png" id="frameRight7" class="frame-corner-right"
+            alt="Frame Right" />
 
-        <section class="page" id="page6">
-          <div class="page-inner">
-            <div class="split-container">
-              <div id="p6Div1" class="section-part p7-top-part" style="opacity: 0">
-                <img src="assets/images/slide7/top-content-7.png" class="ornament" />
-                <a href="https://maps.app.goo.gl/JZX4XK87BjmtHToX7?g_st=ic" target="_blank" class="btn-maps"> <span class="icon-maps">📍</span> Buka Maps </a>
-              </div>
-              <div id="p6Div2" class="section-part p7-mid-part" style="opacity: 0">
-                <img src="assets/images/slide7/mid-content-7.png" class="ornament-divider" />
-              </div>
-              <div id="p6Div3" class="section-part p7-bot-part" style="opacity: 0">
-                <img src="assets/images/slide7/bot-content-7.png" class="ornament" />
-              </div>
+          <div id="p7Content" class="full-content" style="opacity: 0">
+            <img src="assets/images/slide7/content7.png" class="full-content-img" />
+          </div>
+
+          <div class="nav-group" id="btnNav7" style="opacity: 0">
+            <button class="btn-nav-small" onclick="goToPage(5)">
+              <span style="transform: rotate(-90deg); display: inline-block">➜</span>
+            </button>
+            <button class="btn-nav-small" onclick="goToPage(7)">
+              <span style="transform: rotate(90deg); display: inline-block">➜</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page8">
+        <img src="assets/images/background.png" class="page-bg-static" alt="Background" />
+        <div class="page-inner">
+          <div class="split-container-3parts">
+            <div id="p8Div1" class="section-part-3 p8-part-top" style="opacity: 0">
+              <img src="assets/images/slide8/top-8.png" class="content-image" />
             </div>
 
-            <div id="btnNav6" class="nav-group" style="opacity: 0">
-              <button class="btn-nav-small" onclick="goToPage(4)">
-                <span style="display: inline-block; transform: rotate(-90deg)">➜</span>
-              </button>
-              <button class="btn-nav-small" onclick="goToPage(6)">
-                <span style="display: inline-block; transform: rotate(90deg)">➜</span>
-              </button>
+            <div id="p8Div2" class="section-part-3 p8-part-middle" style="opacity: 0">
+              <img src="assets/images/slide8/mid-8.png" class="content-image" />
+            </div>
+
+            <div id="p8Div3" class="section-part-3 p8-part-bottom" style="opacity: 0">
+              <button class="btn-gallery">Buka Galeri</button>
             </div>
           </div>
-        </section>
 
-        <section class="page" id="page7">
-          <div class="page-inner">
-            <img src="assets/images/slide8/frame-8.png" id="frame7" class="frame-top" alt="Frame 8" />
+          <div class="nav-group" id="btnNav8" style="opacity: 0">
+            <button class="btn-nav-small" onclick="goToPage(6)">
+              <span style="transform: rotate(-90deg); display: inline-block">➜</span>
+            </button>
+            <button class="btn-nav-small" onclick="goToPage(8)">
+              <span style="transform: rotate(90deg); display: inline-block">➜</span>
+            </button>
+          </div>
+        </div>
+      </section>
 
-            <div class="split-container">
-              <div id="p7Div1" class="section-part" style="opacity: 0">
-                <img src="assets/images/slide8/content1-8.png" class="ornament" />
-              </div>
 
-              <div id="p7Div2" class="section-part gift-container" style="opacity: 0">
-                <div class="bank-card">
-                  <p class="bank-name">Bank BCA</p>
-                  <p class="bank-number">7660592193</p>
-                  <p class="bank-owner">a.n. Giofazil Afqaf</p>
-                  <button class="btn-copy-modern" onclick="copyToClipboard('7660592193')">📋 Salin</button>
-                </div>
-
-                <div class="bank-card">
-                  <p class="bank-name">Bank BCA</p>
-                  <p class="bank-number">5415382658</p>
-                  <p class="bank-owner">a.n. Yoana Maria Bukit</p>
-                  <button class="btn-copy-modern" onclick="copyToClipboard('5415382658')">📋 Salin</button>
-                </div>
-              </div>
-
-              <div id="p7Div3" class="section-part" style="opacity: 0"></div>
+      <section class="page" id="page9">
+        <img src="assets/images/background.png" class="page-bg-static" alt="Background" />
+        <div class="page-inner">
+          <div class="split-container-2parts">
+            <div id="p9Div1" class="section-part-2 p9-part-top" style="opacity: 0">
+              <img src="assets/images/slide9/top9.png" class="content-image" />
             </div>
 
-            <div id="btnNav7" class="nav-group" style="opacity: 0">
-              <button class="btn-nav-small" onclick="goToPage(5)">
-                <span style="transform: rotate(-90deg); display: inline-block">➜</span>
-              </button>
-              <button class="btn-nav-small" onclick="goToPage(7)">
-                <span style="transform: rotate(90deg); display: inline-block">➜</span>
-              </button>
+            <div id="p9Div2" class="section-part-2 p9-part-bottom" style="opacity: 0">
+              <img src="assets/images/slide9/bot9.png" class="content-image" />
             </div>
           </div>
-        </section>
 
-        <section class="page" id="page8">
-          <div class="page-inner">
-            <img src="assets/images/slide9/frame-9.png" id="frame8" class="frame-top" style="opacity: 0" alt="Frame 9" />
+          <div class="nav-group" id="btnNav9" style="opacity: 0">
+            <button class="btn-nav-small" onclick="goToPage(7)">
+              <span style="display: inline-block; transform: rotate(-90deg)">➜</span>
+            </button>
+            <button class="btn-nav-small" onclick="goToPage(9)">
+              <span style="display: inline-block; transform: rotate(90deg)">➜</span>
+            </button>
+          </div>
+        </div>
+      </section>
 
-            <div class="split-container">
-              <div id="p8Div1" class="section-part" style="opacity: 0">
-                <img src="assets/images/slide9/content1-9.png" class="ornament" />
-              </div>
-
-              <div id="p8Div2" class="section-part" style="opacity: 0; padding-bottom: 0">
-                <img src="assets/images/slide9/content2-9.png" class="ornament" />
-              </div>
-
-              <div id="p8Div3" class="section-part p9-bot-part" style="opacity: 0">
-                <div class="btn-group-rsvp">
-                  <a
-                    href="https://api.whatsapp.com/send?phone=6281360581748&text=Permisi%2C%20saya%20%5BIsi%20Nama%20Anda%5D%20ingin%20mengonfirmasi%20kehadiran%20pada%20acara%20pernikahan.%20Saya%20akan%20hadir%20bersama%20%5BMax.2%5D%20orang%20lainnya.%20Terima%20kasih%20atas%20undangannya."
-                    class="btn-rsvp hadir"
-                    target="_blank"
-                  >
-                    HADIR
-                  </a>
-
-                  <a
-                    href="https://api.whatsapp.com/send?phone=6281360581748&text=Permisi%2C%20saya%20%5BIsi%20Nama%20Anda%5D.%20Terima%20kasih%20banyak%20atas%20undangan%20yang%20diberikan.%20Mohon%20maaf%2C%20saya%20berhalangan%20hadir.%20Doa%20terbaik%20untuk%20kedua%20mempelai."
-                    class="btn-rsvp tidak-hadir"
-                    target="_blank"
-                  >
-                    BERHALANGAN HADIR
-                  </a>
-                </div>
-              </div>
+      <section class="page" id="page10">
+        <img src="assets/images/background.png" class="page-bg-static" alt="Background" />
+        <div class="page-inner">
+          <div class="split-container-2parts">
+            <div id="p10Div1" class="section-part-2 p10-part-top" style="opacity: 0">
+              <img src="assets/images/slide10/top10.png" class="content-image" />
             </div>
 
-            <div id="btnNav8" class="nav-group" style="opacity: 0">
-              <button class="btn-nav-small" onclick="goToPage(6)">
-                <span style="transform: rotate(-90deg); display: inline-block">➜</span>
-              </button>
-              <button class="btn-nav-small" onclick="goToPage(8)">
-                <span style="transform: rotate(90deg); display: inline-block">➜</span>
-              </button>
+            <div id="p10Div2" class="section-part-2 p10-part-bottom" style="opacity: 0">
+              <img src="assets/images/slide10/bot10.png" class="content-image" />
             </div>
           </div>
-        </section>
 
-        <section class="page" id="page9">
-          <div class="page-inner">
-            <div class="img-last-container" id="lastImageContent" style="opacity: 0">
-              <div class="image-stack">
-                <img src="assets/images/slide10/content-10.png" class="img-base" alt="Thank You" />
-              </div>
-            </div>
-
-            <div class="nav-group" id="btnNav9" style="opacity: 0">
-              <button class="btn-nav-small" onclick="goToPage(7)">
-                <span style="display: inline-block; transform: rotate(-90deg)">➜</span>
-              </button>
-            </div>
+          <div class="nav-group" id="btnNav10" style="opacity: 0">
+            <button class="btn-nav-small" onclick="goToPage(8)">
+              <span style="display: inline-block; transform: rotate(-90deg)">➜</span>
+            </button>
           </div>
-        </section>
-      </div>
-    </div>
+        </div>
+      </section>
 
-    <script>
-      function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => {
-          alert("Nomor rekening berhasil disalin: " + text);
-        });
-      }
-
-      // 1. Fungsi khusus yang dipicu oleh tombol "Open Invitation"
-      function openInvitation() {
-        // Jalankan navigasi ke halaman pertama
-        goToPage(1);
-
-        // Jalankan musik (Ini aman karena dipicu langsung oleh klik tombol)
-        const bgMusic = document.getElementById("bgMusic");
-        const musicControl = document.getElementById("musicControl");
-
-        bgMusic.currentTime = 0; // fix dari detik nol musiknya awalnya ini 17 detik
-        bgMusic
-          .play()
-          .then(() => {
-            musicControl.style.display = "flex"; // Munculkan tombol music
-            document.getElementById("musicBox").classList.add("rotating");
-          })
-          .catch((error) => {
-            // Jika tetap diblokir, tombol muncul agar user bisa klik manual
-            musicControl.style.display = "flex";
+      <script>
+        function copyToClipboard(text) {
+          navigator.clipboard.writeText(text).then(() => {
+            alert("Nomor rekening berhasil disalin: " + text);
           });
-      }
-
-      function toggleMusic() {
-        if (bgMusic.paused) {
-          bgMusic.play();
-          musicIcon.innerText = "🔊";
-          musicBox.classList.add("rotating");
-        } else {
-          bgMusic.pause();
-          musicIcon.innerText = "🔇";
-          musicBox.classList.remove("rotating");
-        }
-      }
-
-      function goToPage(index) {
-        const container = document.getElementById("pagesContainer");
-        container.style.transform = `translateY(-${index * (100 / 9)}%)`;
-
-        /* ================= PAGE 2 (Index 1) ================= */
-        /* ================= PAGE 2 (Index 1) ================= */
-        if (index === 1) {
-          const content = document.getElementById("content2Wrapper");
-          const button = document.getElementById("btnNext2");
-          // Select all new decorative elements in Page 2
-          const elementsToAnimate = document.querySelectorAll("#page2 .page2-bg, #page2 .page2-frame-top, #page2 .page2-frame-left, #page2 .page2-frame-right");
-
-          content.classList.remove("anim-fade");
-          button.classList.remove("anim-fade-center");
-          elementsToAnimate.forEach(el => el.classList.remove("anim-fade"));
-
-          setTimeout(() => {
-            elementsToAnimate.forEach(el => el.classList.add("anim-fade"));
-            content.classList.add("anim-fade");
-            button.classList.add("anim-fade-center");
-          }, 600);
         }
 
-        /* ================= PAGE 3 (Index 2) ================= */
-        if (index === 2) {
-          const div1 = document.getElementById("p3Div1");
-          const div2 = document.getElementById("p3Div2");
-          const frame = document.getElementById("frameBot3");
-          const nav = document.getElementById("btnNav3");
+        // 1. Fungsi khusus yang dipicu oleh tombol "Open Invitation"
+        function openInvitation() {
+          // Jalankan navigasi ke halaman pertama
+          goToPage(1);
 
-          [div1, div2, frame].forEach((el) => el.classList.remove("anim-fade"));
-          nav.classList.remove("anim-fade-center");
+          // Jalankan musik (Ini aman karena dipicu langsung oleh klik tombol)
+          const bgMusic = document.getElementById("bgMusic");
+          const musicControl = document.getElementById("musicControl");
 
-          setTimeout(() => {
-            div1.classList.add("anim-fade");
+          bgMusic.currentTime = 0; // fix dari detik nol musiknya awalnya ini 17 detik
+          bgMusic
+            .play()
+            .then(() => {
+              musicControl.style.display = "flex"; // Munculkan tombol music
+              document.getElementById("musicBox").classList.add("rotating");
+            })
+            .catch((error) => {
+              // Jika tetap diblokir, tombol muncul agar user bisa klik manual
+              musicControl.style.display = "flex";
+            });
+        }
+
+        function toggleMusic() {
+          if (bgMusic.paused) {
+            bgMusic.play();
+            musicIcon.innerText = "🔊";
+            musicBox.classList.add("rotating");
+          } else {
+            bgMusic.pause();
+            musicIcon.innerText = "🔇";
+            musicBox.classList.remove("rotating");
+          }
+        }
+
+        let currentPageIndex = 0; // Track current page
+
+        // Dedicated function for horizontal transitions between slides 3 and 4
+        function goToPageHorizontal(targetIndex) {
+          const container = document.getElementById("pagesContainer");
+          const page3 = document.getElementById("page3");
+          const page4 = document.getElementById("page4");
+
+          // Add horizontal-mode to disable vertical scroll transition
+          container.classList.add('horizontal-mode');
+
+          // Reset any previous horizontal classes
+          page3.classList.remove('slide-to-left', 'slide-from-left');
+          page4.classList.remove('slide-to-right', 'slide-from-right');
+          page3.style.transform = '';
+          page4.style.transform = '';
+
+          if (targetIndex === 3) {
+            // Going from slide 3 to slide 4 (left to right)
+            // Ensure we're at page 3 position
+            container.style.transform = `translateY(-${2 * (100 / 9)}%)`;
+
+            // Small delay to ensure position is set
             setTimeout(() => {
-              div2.classList.add("anim-fade");
-              frame.classList.add("anim-fade");
+              page3.classList.add('slide-to-left');
+              page4.classList.add('slide-from-right');
+            }, 50);
+
+            setTimeout(() => {
+              page3.classList.remove('slide-to-left');
+              page4.classList.remove('slide-from-right');
+              container.classList.remove('horizontal-mode');
+              page3.style.transform = '';
+              page4.style.transform = '';
+              currentPageIndex = 3;
+              container.style.transform = `translateY(-${3 * (100 / 9)}%)`;
+
+              // Trigger slide 4 animations
+              const div1 = document.getElementById("p4Div1");
+              const div2 = document.getElementById("p4Div2");
+              const div3 = document.getElementById("p4Div3");
+              const nav4 = document.getElementById("btnNav4");
+
+              [div1, div2, div3].forEach((el) => el.classList.remove("anim-slide-right"));
+              nav4.classList.remove("anim-fade-center");
+
               setTimeout(() => {
-                nav.classList.add("anim-fade-center");
-              }, 500);
-            }, 700);
-          }, 600);
-        }
+                div1.classList.add("anim-slide-right");
+                setTimeout(() => {
+                  div2.classList.add("anim-slide-right");
+                  setTimeout(() => {
+                    div3.classList.add("anim-slide-right");
+                    setTimeout(() => {
+                      nav4.classList.add("anim-fade-center");
+                    }, 400);
+                  }, 400);
+                }, 400);
+              }, 100);
+            }, 1250); // Match CSS transition time (1.2s + buffer)
+          } else if (targetIndex === 2) {
+            // Going from slide 4 to slide 3 (right to left)
+            // Ensure we're at page 4 position
+            container.style.transform = `translateY(-${3 * (100 / 9)}%)`;
 
-        /* ================= PAGE 4 (Index 3) ================= */
-        if (index === 3) {
-          const p4Content = document.getElementById("p4Content");
-          const nav4 = document.getElementById("btnNav4");
-
-          p4Content.classList.remove("anim-fade");
-          nav4.classList.remove("anim-fade-center");
-
-          setTimeout(() => {
-            p4Content.classList.add("anim-fade"); // Fade in untuk teks/header pengantin
+            // Small delay to ensure position is set
             setTimeout(() => {
-              nav4.classList.add("anim-fade-center");
-            }, 800);
-          }, 600);
-        }
+              page4.classList.add('slide-to-right');
+              page3.classList.add('slide-from-left');
+            }, 50);
 
-        /* ================= PAGE 5 (Index 4) ================= */
-        if (index === 4) {
-          const top = document.getElementById("p5Top");
-          const mid = document.getElementById("p5Mid");
-          const bot = document.getElementById("p5Bot");
-          const nav5 = document.getElementById("btnNav5");
-
-          [top, mid, bot].forEach((el) => el.classList.remove("anim-fade"));
-          nav5.classList.remove("anim-fade-center");
-
-          setTimeout(() => {
-            top.classList.add("anim-fade");
             setTimeout(() => {
-              mid.classList.add("anim-fade");
+              page4.classList.remove('slide-to-right');
+              page3.classList.remove('slide-from-left');
+              container.classList.remove('horizontal-mode');
+              page3.style.transform = '';
+              page4.style.transform = '';
+              currentPageIndex = 2;
+              container.style.transform = `translateY(-${2 * (100 / 9)}%)`;
+
+              // Trigger slide 3 animations
+              const div1 = document.getElementById("p3Div1");
+              const div2 = document.getElementById("p3Div2");
+              const div3 = document.getElementById("p3Div3");
+              const nav = document.getElementById("btnNav3");
+
+              [div1, div2, div3].forEach((el) => el.classList.remove("anim-slide-left"));
+              nav.classList.remove("anim-fade-center");
+
               setTimeout(() => {
-                bot.classList.add("anim-fade");
+                div1.classList.add("anim-slide-left");
+                setTimeout(() => {
+                  div2.classList.add("anim-slide-left");
+                  setTimeout(() => {
+                    div3.classList.add("anim-slide-left");
+                    setTimeout(() => {
+                      nav.classList.add("anim-fade-center");
+                    }, 400);
+                  }, 400);
+                }, 400);
+              }, 100);
+            }, 1250); // Match CSS transition time (1.2s + buffer)
+          }
+        }
+
+        function goToPage(index) {
+          const container = document.getElementById("pagesContainer");
+          currentPageIndex = index;
+          container.style.transform = `translateY(-${index * (100 / 9)}%)`;
+
+          /* ================= PAGE 2 (Index 1) ================= */
+          /* ================= PAGE 2 (Index 1) ================= */
+          if (index === 1) {
+            const content = document.getElementById("content2Wrapper");
+            const button = document.getElementById("btnNext2");
+            // Select all new decorative elements in Page 2
+            const elementsToAnimate = document.querySelectorAll("#page2 .page2-bg, #page2 .page2-frame-top, #page2 .page2-frame-left, #page2 .page2-frame-right");
+
+            content.classList.remove("anim-fade");
+            button.classList.remove("anim-fade-center");
+            elementsToAnimate.forEach(el => el.classList.remove("anim-fade"));
+
+            setTimeout(() => {
+              elementsToAnimate.forEach(el => el.classList.add("anim-fade"));
+              content.classList.add("anim-fade");
+              button.classList.add("anim-fade-center");
+            }, 600);
+          }
+
+          /* ================= PAGE 3 (Index 2) ================= */
+          if (index === 2) {
+            const div1 = document.getElementById("p3Div1");
+            const div2 = document.getElementById("p3Div2");
+            const div3 = document.getElementById("p3Div3");
+            const nav = document.getElementById("btnNav3");
+
+            [div1, div2, div3].forEach((el) => el.classList.remove("anim-slide-left"));
+            nav.classList.remove("anim-fade-center");
+
+            setTimeout(() => {
+              div1.classList.add("anim-slide-left");
+              setTimeout(() => {
+                div2.classList.add("anim-slide-left");
+                setTimeout(() => {
+                  div3.classList.add("anim-slide-left");
+                  setTimeout(() => {
+                    nav.classList.add("anim-fade-center");
+                  }, 400);
+                }, 400);
+              }, 400);
+            }, 600);
+          }
+
+          /* ================= PAGE 4 (Index 3) ================= */
+          if (index === 3) {
+            const div1 = document.getElementById("p4Div1");
+            const div2 = document.getElementById("p4Div2");
+            const div3 = document.getElementById("p4Div3");
+            const nav4 = document.getElementById("btnNav4");
+
+            [div1, div2, div3].forEach((el) => el.classList.remove("anim-slide-right"));
+            nav4.classList.remove("anim-fade-center");
+
+            setTimeout(() => {
+              div1.classList.add("anim-slide-right");
+              setTimeout(() => {
+                div2.classList.add("anim-slide-right");
+                setTimeout(() => {
+                  div3.classList.add("anim-slide-right");
+                  setTimeout(() => {
+                    nav4.classList.add("anim-fade-center");
+                  }, 400);
+                }, 400);
+              }, 400);
+            }, 600);
+          }
+
+          /* ================= PAGE 5 (Index 4) ================= */
+          if (index === 4) {
+            const div1 = document.getElementById("p5Div1");
+            const div2 = document.getElementById("p5Div2");
+            const nav5 = document.getElementById("btnNav5");
+
+            [div1, div2].forEach((el) => el.classList.remove("anim-fade"));
+            nav5.classList.remove("anim-fade-center");
+
+            setTimeout(() => {
+              div1.classList.add("anim-fade");
+              setTimeout(() => {
+                div2.classList.add("anim-fade");
                 setTimeout(() => {
                   nav5.classList.add("anim-fade-center");
-                }, 400);
+                }, 500);
               }, 500);
-            }, 500);
-          }, 400);
-        }
+            }, 400);
+          }
 
-        /* ================= PAGE 6 MAPS (Index 5) ================= */
-        if (index === 5) {
-          const div1 = document.getElementById("p6Div1");
-          const div2 = document.getElementById("p6Div2");
-          const div3 = document.getElementById("p6Div3");
-          const nav6 = document.getElementById("btnNav6");
+          /* ================= PAGE 6 (Index 5) ================= */
+          if (index === 5) {
+            const div1 = document.getElementById("p6Div1");
+            const div2 = document.getElementById("p6Div2");
+            const nav6 = document.getElementById("btnNav6");
 
-          [div1, div2, div3].forEach((el) => el.classList.remove("anim-fade"));
-          nav6.classList.remove("anim-fade-center");
+            [div1, div2].forEach((el) => el.classList.remove("anim-fade"));
+            nav6.classList.remove("anim-fade-center");
 
-          setTimeout(() => {
-            div1.classList.add("anim-fade");
             setTimeout(() => {
-              div2.classList.add("anim-fade");
+              div1.classList.add("anim-fade");
               setTimeout(() => {
-                div3.classList.add("anim-fade");
+                div2.classList.add("anim-fade");
                 setTimeout(() => {
                   nav6.classList.add("anim-fade-center");
                 }, 500);
-              }, 600);
-            }, 600);
-          }, 400);
-        }
+              }, 500);
+            }, 400);
+          }
 
-        /* ================= PAGE 7 GIFT (Index 6) ================= */
-        if (index === 6) {
-          const div1 = document.getElementById("p7Div1");
-          const div2 = document.getElementById("p7Div2");
-          const div3 = document.getElementById("p7Div3");
-          const nav7 = document.getElementById("btnNav7");
+          /* ================= PAGE 7 (Index 6) ================= */
+          if (index === 6) {
+            const content = document.getElementById("p7Content");
+            const nav7 = document.getElementById("btnNav7");
 
-          [div1, div2, div3].forEach((el) => el.classList.remove("anim-fade"));
-          nav7.classList.remove("anim-fade-center");
+            content.classList.remove("anim-fade");
+            nav7.classList.remove("anim-fade-center");
 
-          setTimeout(() => {
-            div1.classList.add("anim-fade");
             setTimeout(() => {
-              div2.classList.add("anim-fade");
+              content.classList.add("anim-fade");
               setTimeout(() => {
-                div3.classList.add("anim-fade");
-                setTimeout(() => {
-                  nav7.classList.add("anim-fade-center");
-                }, 500);
+                nav7.classList.add("anim-fade-center");
               }, 600);
-            }, 600);
-          }, 400);
-        }
+            }, 400);
+          }
 
-        /* ================= PAGE 8 RSVP (Index 7) ================= */
-        if (index === 7) {
-          const div1 = document.getElementById("p8Div1");
-          const div2 = document.getElementById("p8Div2");
-          const div3 = document.getElementById("p8Div3");
-          const frame8 = document.getElementById("frame8");
-          const nav8 = document.getElementById("btnNav8");
+          /* ================= PAGE 8 (Index 7) ================= */
+          if (index === 7) {
+            const div1 = document.getElementById("p8Div1");
+            const div2 = document.getElementById("p8Div2");
+            const div3 = document.getElementById("p8Div3");
+            const nav8 = document.getElementById("btnNav8");
 
-          // Reset Animasi agar bisa diulang saat navigasi balik
-          [div1, div2, div3, frame8].forEach((el) => el.classList.remove("anim-fade"));
-          nav8.classList.remove("anim-fade-center");
-
-          setTimeout(() => {
-            frame8.classList.add("anim-fade");
-            div1.classList.add("anim-fade");
+            [div1, div2, div3].forEach((el) => el.classList.remove("anim-fade"));
+            nav8.classList.remove("anim-fade-center");
 
             setTimeout(() => {
-              div2.classList.add("anim-fade");
-
+              div1.classList.add("anim-fade");
               setTimeout(() => {
-                div3.classList.add("anim-fade");
-
+                div2.classList.add("anim-fade");
                 setTimeout(() => {
-                  nav8.classList.add("anim-fade-center");
+                  div3.classList.add("anim-fade");
+                  setTimeout(() => {
+                    nav8.classList.add("anim-fade-center");
+                  }, 400);
                 }, 500);
-              }, 600);
-            }, 600);
-          }, 400);
-        }
+              }, 500);
+            }, 400);
+          }
 
-        /* ================= PAGE 9 LAST (Index 8) ================= */
-        if (index === 8) {
-          const lastImg = document.getElementById("lastImageContent");
-          const nav9 = document.getElementById("btnNav9");
+          /* ================= PAGE 9 (Index 8) ================= */
+          if (index === 8) {
+            const div1 = document.getElementById("p9Div1");
+            const div2 = document.getElementById("p9Div2");
+            const nav9 = document.getElementById("btnNav9");
 
-          lastImg.classList.remove("anim-fade");
-          nav9.classList.remove("anim-fade-center");
+            [div1, div2].forEach((el) => el.classList.remove("anim-fade"));
+            nav9.classList.remove("anim-fade-center");
 
-          setTimeout(() => {
-            lastImg.classList.add("anim-fade");
             setTimeout(() => {
-              nav9.classList.add("anim-fade-center");
-            }, 600);
-          }, 400);
+              div1.classList.add("anim-fade");
+              setTimeout(() => {
+                div2.classList.add("anim-fade");
+                setTimeout(() => {
+                  nav9.classList.add("anim-fade-center");
+                }, 500);
+              }, 500);
+            }, 400);
+          }
+
+          /* ================= PAGE 10 (Index 9) ================= */
+          if (index === 9) {
+            const div1 = document.getElementById("p10Div1");
+            const div2 = document.getElementById("p10Div2");
+            const nav10 = document.getElementById("btnNav10");
+
+            [div1, div2].forEach((el) => el.classList.remove("anim-fade"));
+            nav10.classList.remove("anim-fade-center");
+
+            setTimeout(() => {
+              div1.classList.add("anim-fade");
+              setTimeout(() => {
+                div2.classList.add("anim-fade");
+                setTimeout(() => {
+                  nav10.classList.add("anim-fade-center");
+                }, 500);
+              }, 500);
+            }, 400);
+          }
         }
-      }
-    </script>
-  </body>
+      </script>
+</body>
+
 </html>
