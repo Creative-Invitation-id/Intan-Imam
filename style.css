@@ -1,0 +1,599 @@
+/* --- FONTS --- */
+@font-face {
+  font-family: "GreatVibes";
+  src: url("./fonts/primary.ttf");
+}
+
+@font-face {
+  font-family: "Playfair";
+  src: url("./fonts/primary.ttf");
+}
+
+/* --- RESET & BASE --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* MODIFIKASI LETTERBOXING: Latar belakang luar hitam */
+body {
+  margin: 0;
+  font-family: "Playfair", serif;
+  background: #000; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh; /* Menggunakan dvh agar akurat di mobile */
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* MODIFIKASI LETTERBOXING: Wrapper dikunci rasio 9:16 */
+.mobile-wrapper {
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+  
+  /* Kunci Rasio */
+  height: 100dvh;
+  width: calc(100dvh * 9 / 16); 
+  
+  /* Proteksi untuk layar HP asli agar tidak gepeng */
+  max-width: 100vw;
+  max-height: calc(100vw * 16 / 9);
+}
+
+/* --- PAGES CONTAINER (Horizontal Slide) --- */
+.pages {
+  display: flex;
+  flex-direction: row;
+  width: 1000%; 
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.page {
+  width: 10%; 
+  height: 100%;
+  position: relative;
+  flex-shrink: 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* --- FRAME (Fit to Screen) --- */
+.frame-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50; /* Z-index ditingkatkan agar di atas konten */
+  pointer-events: none;
+}
+
+.frame-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* --- PAGE 1: 3 EQUAL SECTIONS --- */
+.split-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+.section-part {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.p1-top {
+  flex: 1.5 !important; 
+  justify-content: flex-end !important; /* Konten nempel ke bawah div */
+  padding-bottom: 10px; /* Jarak opsional agar tidak terlalu mepet div tengah */
+}
+
+/* Div Kedua (Tengah) - Mengambil 1.5 bagian */
+.p1-mid {
+  flex: 1.5 !important; 
+  justify-content: flex-start !important; /* Konten nempel ke atas div */
+  padding-top: 10px; /* Jarak opsional agar tidak terlalu mepet div atas */
+}
+
+/* Div Ketiga (Bawah) - Mengambil 1 bagian saja (lebih kecil) */
+.p1-bot {
+  flex: 1 !important; 
+  justify-content: flex-start !important; /* Konten tetap di tengah */
+}
+
+.ornament {
+  max-width: 90%;
+  max-height: 85%;
+  object-fit: contain;
+}
+
+/* --- CONTENT BOTTOM (Page 1) --- */
+.content-bottom p {
+  font-family: "GreatVibes", cursive;
+  font-size: 16px;
+  color: #5a1f1f;
+  margin-bottom: 15px;
+}
+
+.btn-open {
+  background-color: #800020;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-family: "Playfair", serif;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.btn-open:hover {
+  background-color: #5a0016;
+}
+
+/* --- PAGE 2 STYLING --- */
+.page-inner {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: #fff;
+  padding-bottom: 75px; /* Ruang aman navigasi */
+}
+
+.full-content-img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.content-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* MODIFIKASI NAVIGASI: Fix posisi di dalam wrapper 9:16 */
+.btn-next-round, .nav-group {
+  position: absolute;
+  bottom: 25px; 
+  left: 50%;
+  transform: translateX(-50%); 
+  z-index: 100;
+  opacity: 0;
+}
+
+.nav-group {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-next-round, .btn-nav-small {
+  width: 40px;         
+  height: 40px;
+  background-color: #800020;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.btn-next-round:hover, .btn-nav-small:hover {
+  background-color: #5a0016;
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* --- PAGE 3 MODIFIKASI --- */
+.p3-div-top {
+    flex: 1 !important; 
+    justify-content: flex-end !important;
+}
+.p3-div-bot {
+    flex: 2 !important; 
+    justify-content: flex-start !important;
+}
+.p3-div-top .content-kecil {
+    max-width: 80% !important;
+}
+#frameBot3 {
+    width: 60%;         
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    margin-top: 10px;
+}
+
+/* --- ANIMATIONS --- */
+.anim-fade {
+  opacity: 0;
+  animation: fadeIn 1.8s ease-out forwards;
+}
+
+.anim-fade-center {
+  animation: fadeInCenter 1.2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInCenter {
+  from { opacity: 0; transform: translateX(-50%) translateY(15px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.delay-1 { animation-delay: 0.8s; }
+.delay-2 { animation-delay: 1.4s; }
+.delay-3 { animation-delay: 2.0s; }
+
+/* Scrollbar Hidden */
+.mobile-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- PAGE 4: GORDEN --- */
+.slide4-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.frame-left, .frame-right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 1;
+}
+.frame-left { left: 0; }
+.frame-right { right: 0; }
+.slide4-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 60px 24px;
+}
+.name-block {
+  /* TAMBAHKAN JARAK DI SINI */
+  margin-bottom: 45px; /* Memberi jarak bawah antara mempelai pria dan wanita */
+}
+.frame-middle {
+  position: relative;
+  display: block;
+  margin: 0 auto 40px auto;
+  width: 85%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
+}
+.curtain-drift-left {
+  transform-origin: left center;
+  animation: curtain-drift-left 6s ease-in-out infinite;
+  display: inline-block;
+}
+.curtain-drift-right {
+  transform-origin: right center;
+  animation: curtain-drift-right 6s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes curtain-drift-left {
+  0%, 100% { transform: translateX(0) scale(1.1); }
+  50% { transform: translateX(-8px) scale(1.1); }
+}
+@keyframes curtain-drift-right {
+  0%, 100% { transform: translateX(0) scale(1.1); }
+  50% { transform: translateX(8px) scale(1.1); }
+}
+
+/* --- PAGE 5 --- */
+/* --- PAGE 5: AYAT & FOTO --- */
+#page5 .page-inner {
+  /* Kurangi padding agar tidak memakan ruang konten di layar pendek */
+  padding: 20px 15px 80px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; /* Membagi ruang antar elemen secara merata */
+  align-items: center;
+}
+
+.p5-block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Bagian Atas (Quote/Opening) */
+.p5-top .p5-img {
+  max-width: 240px; 
+  width: 80%;
+  height: auto;
+}
+
+/* Bagian Tengah (Foto Utama) */
+.p5-middle {
+  margin: 10px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+/* Bagian Bawah (Ayat/Scripture) */
+.p5-bottom .p5-img {
+  max-width: 320px;
+  width: 90%;
+  height: auto;
+}
+
+.p5-middle .p5-img {
+  /* UKURAN DIPERBESAR: 
+     Dari 35dvh menjadi 45dvh (tinggi) 
+     Dari 90% menjadi 95% (lebar) */
+  max-height: 45dvh; 
+  width: auto;
+  max-width: 95%;  /* Opsional: membuat sudut lebih halus */
+  object-fit: contain; /* Menggunakan contain agar gambar asli tidak terpotong (crop) */ /* Memberi dimensi agar lebih menonjol */
+}
+
+/* Navigasi khusus Page 5 */
+#btnNav5 {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+/* --- PAGE 6: FIT TO SCREEN --- */
+#page6 .page-inner {
+  /* Menghilangkan padding agar gambar bisa benar-benar fit ke bawah jika perlu */
+  padding-bottom: 0; 
+  justify-content: center; /* Memastikan konten tetap di tengah secara vertikal */
+}
+
+#page6 .content-wrapper {
+  width: 100%;
+  height: 100%; /* Mengambil tinggi penuh */
+  display: flex;
+  align-items: center; /* Center vertikal */
+  justify-content: center; /* Center horizontal */
+}
+
+#page6 .full-content-img {
+  width: 100%;
+  height: 100%;
+  /* object-fit: cover akan membuat gambar memenuhi layar (mungkin terpotong sedikit) */
+  /* object-fit: contain akan membuat seluruh gambar terlihat tanpa terpotong */
+  object-fit: cover; 
+}
+
+/* Pastikan navigasi tetap berada di atas gambar */
+#page6 .nav-group {
+  z-index: 100;
+  bottom: 25px; /* Jarak dari bawah layar */
+}
+
+/* --- PAGE 7: MAPS --- */
+.btn-maps {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #800020; 
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 15px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.p7-top-part { justify-content: flex-end !important; padding-bottom: 20px; }
+.p7-mid-part { flex: 0 1 auto !important; padding: 0; }
+.p7-bot-part { justify-content: flex-start !important; padding-top: 20px; }
+.ornament-divider { max-width: 60%; height: auto; }
+
+/* --- PAGE 8: MODERN GIFT CARDS --- */
+.gift-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  width: 100%;
+}
+#p8Div1 {
+  /* Menurunkan konten div paling atas */
+  padding-top: 30px;
+}
+.bank-card {
+  width: 85%;
+  max-width: 240px;
+  background: linear-gradient(135deg, rgba(128, 0, 32, 0.05) 0%, rgba(128, 0, 32, 0.1) 100%);
+  border: 1px solid rgba(128, 0, 32, 0.2);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  margin: 0 auto;
+}
+.bank-name { color: #800020; font-weight: bold; font-size: 13px; }
+.bank-number { 
+  font-family: 'Courier New', Courier, monospace; 
+  font-size: 16px; 
+  font-weight: bold; 
+  color: #333;
+}
+.btn-copy-modern {
+  width: 100%;
+  max-width: 140px;
+  background-color: #800020;
+  color: white;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  font-size: 10px;
+  margin: 8px auto 0;
+  cursor: pointer;
+}
+#frame8 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 55;
+  pointer-events: none;
+}
+
+/* --- PAGE 9: RSVP --- */
+.p9-bot-part {
+  justify-content: flex-start !important;
+  padding-top: 5px !important;
+}
+.btn-group-rsvp {
+  display: flex;
+  flex-direction: column; 
+  gap: 12px;
+  width: 80%;
+  align-items: center;
+}
+.btn-rsvp {
+  display: block;
+  width: 100%;
+  padding: 12px 10px;
+  background-color: #800020;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 25px;
+  font-size: 11px;
+  font-weight: bold;
+}
+#frame9 {
+  z-index: 55;
+  pointer-events: none;
+}
+
+/* --- PAGE 10: CLOSING --- */
+#page10 .page-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.img-last {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.img-last img { width: 100%; height: auto; display: block; }
+#btnNav10 {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Global Hidden Scrollbar */
+::-webkit-scrollbar { display: none; }
+.music-control {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 99999; /* Pastikan di atas semua frame dan ornamen */
+  display: none; /* Akan dimunculkan via JS saat tombol OPEN diklik */
+  cursor: pointer;
+}
+
+.music-box {
+  width: 40px;
+  height: 40px;
+  background: rgba(128, 0, 32, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Animasi berputar pelan saat musik nyala */
+.rotating {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --- PAGE 10: Tumpukan Gambar --- */
+.img-last-container {
+  width: 100%;
+  max-width: 300px; /* Diperbesar agar pembungkusnya tidak membatasi gambar */
+  margin: 0 auto;
+}
+
+.image-stack {
+  position: relative; 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-base {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.img-overlay {
+  position: absolute; 
+  /* PERBESAR KIRI-KANAN: tadinya 50%, kita naikkan ke 80% */
+  width: 70%;         
+  height: auto;
+  
+  /* NAIKKAN GAMBAR: tadinya 45%, kita kurangi ke 35% agar lebih naik */
+  top: 30%;           
+  
+  left: 50%;          
+  transform: translate(-50%, -50%); 
+  z-index: 2;         
+  
+  /* Efek Smooth Floating */
+  animation: smoothFloat 4s ease-in-out infinite;
+}
+
