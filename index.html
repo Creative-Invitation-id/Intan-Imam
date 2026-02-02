@@ -28,6 +28,10 @@
         <span id="musicIcon">🔊</span>
       </div>
     </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
     <div class="pages" id="pagesContainer">
       <section class="page cover">
         <img src="assets/images/slide1/background1.png" class="cover-bg" alt="Background" />
@@ -45,8 +49,8 @@
       <section class="page" id="page2">
         <img src="assets/images/slide2/background2.png" class="cover-bg" alt="Background" />
         <img src="assets/images/slide2/frame-bot2.png" class="page2-frame-top anim-fade" alt="Top Decoration" />
-        <img src="assets/images/slide2/frame-left2.png" class="page2-frame-left anim-fade" alt="Left Frame" />
-        <img src="assets/images/slide2/frame-right2.png" class="page2-frame-right anim-fade" alt="Right Frame" />
+        <img src="assets/images/slide2/frame-left2.png" class="page2-frame-left" alt="Left Frame" />
+        <img src="assets/images/slide2/frame-right2.png" class="page2-frame-right" alt="Right Frame" />
 
         <div class="page-inner">
           <div id="content2Wrapper" class="content-wrapper" style="opacity: 0">
@@ -308,8 +312,18 @@
       <script>
         function copyToClipboard(text) {
           navigator.clipboard.writeText(text).then(() => {
-            alert("Nomor rekening berhasil disalin: " + text);
+            showToast("Nomor rekening berhasil disalin!");
           });
+        }
+
+        function showToast(message) {
+          const toast = document.getElementById('toast');
+          toast.textContent = message;
+          toast.classList.add('show');
+
+          setTimeout(() => {
+            toast.classList.remove('show');
+          }, 3000);
         }
 
         const STORAGE_KEY_TIME = "wedding_invitation_music_time";
@@ -331,6 +345,19 @@
 
           // Jalankan navigasi ke halaman kedua (Mempelai)
           document.getElementById('page2').scrollIntoView({ behavior: 'smooth' });
+
+          // Add scroll lock to prevent going back to slide 1
+          const mobileWrapper = document.querySelector('.mobile-wrapper');
+          const page2 = document.getElementById('page2');
+
+          setTimeout(() => {
+            mobileWrapper.addEventListener('scroll', function preventSlide1() {
+              const page2Top = page2.offsetTop;
+              if (mobileWrapper.scrollTop < page2Top) {
+                mobileWrapper.scrollTop = page2Top;
+              }
+            });
+          }, 1000);
 
           // Jalankan musik (Ini aman karena dipicu langsung oleh klik tombol)
           const bgMusic = document.getElementById("bgMusic");
@@ -400,134 +427,154 @@
         });
 
         // --- SCROLL ANIMATION LOGIC ---
-        
+
         const animationHandlers = {
           page1: () => {
-             // Cover animations (if needed) - typically handled by CSS on load, but we can enforce here
-             const coverContent = document.querySelector('.cover-content'); 
-             if(coverContent && !coverContent.classList.contains('anim-fade')) {
-                coverContent.classList.add('anim-fade');
-             }
+            // Cover animations (if needed) - typically handled by CSS on load, but we can enforce here
+            const coverContent = document.querySelector('.cover-content');
+            if (coverContent && !coverContent.classList.contains('anim-fade')) {
+              coverContent.classList.add('anim-fade');
+            }
           },
           page2: () => {
             const content = document.getElementById("content2Wrapper");
             // Select all new decorative elements in Page 2
             const elementsToAnimate = document.querySelectorAll("#page2 .page2-bg, #page2 .page2-frame-top, #page2 .page2-frame-left, #page2 .page2-frame-right");
 
-            if(content.classList.contains("anim-fade")) return; // Already animated
+            // Reset animations by removing classes first
+            elementsToAnimate.forEach(el => el.classList.remove("anim-fade"));
+            content.classList.remove("anim-fade");
 
+            // Re-trigger animations
             setTimeout(() => {
               elementsToAnimate.forEach(el => el.classList.add("anim-fade"));
               content.classList.add("anim-fade");
             }, 300);
           },
           page3: () => {
-             const div1 = document.getElementById("p3Div1");
-             const div2 = document.getElementById("p3Div2");
-             const div3 = document.getElementById("p3Div3");
-             
-             if(div1.classList.contains("anim-slide-left")) return;
+            const div1 = document.getElementById("p3Div1");
+            const div2 = document.getElementById("p3Div2");
+            const div3 = document.getElementById("p3Div3");
 
-             setTimeout(() => {
-               div1.classList.add("anim-slide-left");
-               setTimeout(() => {
-                 div2.classList.add("anim-slide-left");
-                 setTimeout(() => {
-                   div3.classList.add("anim-slide-left");
-                 }, 400);
-               }, 400);
-             }, 300);
+            // Reset animations
+            [div1, div2, div3].forEach(el => el.classList.remove("anim-slide-left"));
+
+            // Re-trigger animations
+            setTimeout(() => {
+              div1.classList.add("anim-slide-left");
+              setTimeout(() => {
+                div2.classList.add("anim-slide-left");
+                setTimeout(() => {
+                  div3.classList.add("anim-slide-left");
+                }, 400);
+              }, 400);
+            }, 300);
           },
           page4: () => {
             const div1 = document.getElementById("p4Div1");
             const div2 = document.getElementById("p4Div2");
             const div3 = document.getElementById("p4Div3");
 
-            if(div1.classList.contains("anim-slide-right")) return;
+            // Reset animations
+            [div1, div2, div3].forEach(el => el.classList.remove("anim-slide-right"));
 
+            // Re-trigger animations
             setTimeout(() => {
-               div1.classList.add("anim-slide-right");
-               setTimeout(() => {
-                 div2.classList.add("anim-slide-right");
-                 setTimeout(() => {
-                   div3.classList.add("anim-slide-right");
-                 }, 400);
-               }, 400);
-             }, 300);
+              div1.classList.add("anim-slide-right");
+              setTimeout(() => {
+                div2.classList.add("anim-slide-right");
+                setTimeout(() => {
+                  div3.classList.add("anim-slide-right");
+                }, 400);
+              }, 400);
+            }, 300);
           },
           page5: () => {
-             const div1 = document.getElementById("p5Div1");
-             const div2 = document.getElementById("p5Div2");
+            const div1 = document.getElementById("p5Div1");
+            const div2 = document.getElementById("p5Div2");
 
-             if(div1.classList.contains("anim-fade")) return;
+            // Reset animations
+            [div1, div2].forEach(el => el.classList.remove("anim-fade"));
 
-             setTimeout(() => {
-               div1.classList.add("anim-fade");
-               setTimeout(() => {
-                 div2.classList.add("anim-fade");
-               }, 400);
-             }, 300);
+            // Re-trigger animations
+            setTimeout(() => {
+              div1.classList.add("anim-fade");
+              setTimeout(() => {
+                div2.classList.add("anim-fade");
+              }, 400);
+            }, 300);
           },
           page6: () => {
-             const div1 = document.getElementById("p6Div1");
-             const div2 = document.getElementById("p6Div2");
-             
-             if(div1.classList.contains("anim-fade")) return;
-             
-             setTimeout(() => {
-               div1.classList.add("anim-fade");
-               setTimeout(() => {
-                 div2.classList.add("anim-fade");
-               }, 400);
-             }, 300);
+            const div1 = document.getElementById("p6Div1");
+            const div2 = document.getElementById("p6Div2");
+
+            // Reset animations
+            [div1, div2].forEach(el => el.classList.remove("anim-fade"));
+
+            // Re-trigger animations
+            setTimeout(() => {
+              div1.classList.add("anim-fade");
+              setTimeout(() => {
+                div2.classList.add("anim-fade");
+              }, 400);
+            }, 300);
           },
           page7: () => {
-             const content = document.getElementById("p7Content");
-             if(content.classList.contains("anim-zoom")) return;
-             setTimeout(() => content.classList.add("anim-zoom"), 300);
+            const content = document.getElementById("p7Content");
+            // Reset animation
+            content.classList.remove("anim-zoom");
+            // Re-trigger animation
+            setTimeout(() => content.classList.add("anim-zoom"), 300);
           },
           page8: () => {
-             const div1 = document.getElementById("p8Div1");
-             const div2 = document.getElementById("p8Div2");
-             const div3 = document.getElementById("p8Div3");
-             
-             if(div1.classList.contains("anim-slide-up")) return;
+            const div1 = document.getElementById("p8Div1");
+            const div2 = document.getElementById("p8Div2");
+            const div3 = document.getElementById("p8Div3");
 
-             setTimeout(() => {
-               div1.classList.add("anim-slide-up");
-               setTimeout(() => {
-                 div2.classList.add("anim-slide-up");
-                 setTimeout(() => {
-                   div3.classList.add("anim-slide-up");
-                 }, 400);
-               }, 400);
-             }, 300);
+            // Reset animations
+            [div1, div2, div3].forEach(el => el.classList.remove("anim-slide-up"));
+
+            // Re-trigger animations
+            setTimeout(() => {
+              div1.classList.add("anim-slide-up");
+              setTimeout(() => {
+                div2.classList.add("anim-slide-up");
+                setTimeout(() => {
+                  div3.classList.add("anim-slide-up");
+                }, 400);
+              }, 400);
+            }, 300);
           },
           page9: () => {
-             const div1 = document.getElementById("p9Div1");
-             const div2 = document.getElementById("p9Div2");
+            const div1 = document.getElementById("p9Div1");
+            const div2 = document.getElementById("p9Div2");
 
-             if(div1.classList.contains("anim-fade")) return;
+            // Reset animations
+            [div1, div2].forEach(el => el.classList.remove("anim-fade"));
 
-             setTimeout(() => {
-               div1.classList.add("anim-fade");
-               setTimeout(() => {
-                 div2.classList.add("anim-fade");
-               }, 400);
-             }, 300);
+            // Re-trigger animations
+            setTimeout(() => {
+              div1.classList.add("anim-fade");
+              setTimeout(() => {
+                div2.classList.add("anim-fade");
+              }, 400);
+            }, 300);
           },
           page10: () => {
-             const div1 = document.getElementById("p10Div1");
-             const div2 = document.getElementById("p10Div2");
-             
-             if(div1.classList.contains("anim-fade")) return;
-             
-             setTimeout(() => {
-                 div1.classList.add("anim-fade");
-                 setTimeout(() => {
-                     if(div2) div2.classList.add("anim-fade");
-                 }, 400);
-             }, 300);
+            const div1 = document.getElementById("p10Div1");
+            const div2 = document.getElementById("p10Div2");
+
+            // Reset animations
+            div1.classList.remove("anim-fade");
+            if (div2) div2.classList.remove("anim-fade");
+
+            // Re-trigger animations
+            setTimeout(() => {
+              div1.classList.add("anim-fade");
+              setTimeout(() => {
+                if (div2) div2.classList.add("anim-fade");
+              }, 400);
+            }, 300);
           }
         };
 
@@ -548,48 +595,61 @@
         }, observerOptions);
 
         document.addEventListener('DOMContentLoaded', () => {
-           // Start observing all pages
-           document.querySelectorAll('.page').forEach(page => {
-             observer.observe(page);
-           });
+          // Start observing all pages
+          document.querySelectorAll('.page').forEach(page => {
+            observer.observe(page);
+          });
 
-           // Check for hash to support deep linking (returning from gallery)
-           if (window.location.hash) {
-             const targetId = window.location.hash.substring(1); // remove '#'
-             const targetElement = document.getElementById(targetId);
-             
-             if(targetElement) {
-                // Unlock scroll immediately
-                document.querySelector('.mobile-wrapper').style.overflowY = 'auto';
-                
-                // Scroll to target
-                setTimeout(() => {
-                  targetElement.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
+          // Check for hash to support deep linking (returning from gallery)
+          if (window.location.hash) {
+            const targetId = window.location.hash.substring(1); // remove '#'
+            const targetElement = document.getElementById(targetId);
 
-                // FORCE RESUME MUSIC
-                const musicControl = document.getElementById("musicControl");
-                const bgMusic = document.getElementById("bgMusic");
-                const savedTime = localStorage.getItem(STORAGE_KEY_TIME);
-                
-                // Show control
-                musicControl.style.display = 'flex';
-                
-                if(savedTime) { 
-                   bgMusic.currentTime = parseFloat(savedTime);
-                }
+            if (targetElement) {
+              // Unlock scroll immediately
+              const mobileWrapper = document.querySelector('.mobile-wrapper');
+              mobileWrapper.style.overflowY = 'auto';
 
-                bgMusic.play().then(() => {
-                   isMusicPlaying = true;
-                   document.getElementById("musicBox").classList.add("rotating");
-                   document.getElementById("musicIcon").innerText = "🔊";
-                }).catch(e => {
-                   console.log("Auto-resume blocked by browser policy", e);
-                   // Still show button so they can click it
-                   document.getElementById("musicIcon").innerText = "🔇";
+              // Add scroll lock to prevent going back to slide 1
+              const page2 = document.getElementById('page2');
+
+              setTimeout(() => {
+                mobileWrapper.addEventListener('scroll', function preventSlide1() {
+                  const page2Top = page2.offsetTop;
+                  if (mobileWrapper.scrollTop < page2Top) {
+                    mobileWrapper.scrollTop = page2Top;
+                  }
                 });
-             }
-           }
+              }, 500);
+
+              // Scroll to target
+              setTimeout(() => {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
+
+              // FORCE RESUME MUSIC
+              const musicControl = document.getElementById("musicControl");
+              const bgMusic = document.getElementById("bgMusic");
+              const savedTime = localStorage.getItem(STORAGE_KEY_TIME);
+
+              // Show control
+              musicControl.style.display = 'flex';
+
+              if (savedTime) {
+                bgMusic.currentTime = parseFloat(savedTime);
+              }
+
+              bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                document.getElementById("musicBox").classList.add("rotating");
+                document.getElementById("musicIcon").innerText = "🔊";
+              }).catch(e => {
+                console.log("Auto-resume blocked by browser policy", e);
+                // Still show button so they can click it
+                document.getElementById("musicIcon").innerText = "🔇";
+              });
+            }
+          }
         });
 
         // --- Save The Date Countdown Logic ---

@@ -17,15 +17,6 @@
 
 <body>
   <div class="mobile-wrapper">
-    <audio id="bgMusic" loop>
-      <source src="assets/song.mp3" type="audio/mpeg" />
-    </audio>
-
-    <div id="musicControl" class="music-control" style="display: flex;" onclick="toggleMusic()">
-      <div class="music-box rotating" id="musicBox">
-        <span id="musicIcon">🔊</span>
-      </div>
-    </div>
 
     <!-- Background from existing design -->
     <img src="assets/images/background.png" class="page-bg-static" alt="Background" />
@@ -55,54 +46,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY_TIME = "wedding_invitation_music_time";
-    let isMusicPlaying = false; 
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const bgMusic = document.getElementById("bgMusic");
-      const musicBox = document.getElementById("musicBox");
-      const savedTime = localStorage.getItem(STORAGE_KEY_TIME);
-      
-      if (savedTime) {
-        bgMusic.currentTime = parseFloat(savedTime);
-      }
-
-      // Auto play since user came from index
-      bgMusic.play()
-        .then(() => {
-          isMusicPlaying = true;
-          musicBox.classList.add("rotating");
-        })
-        .catch(e => {
-          console.log("Autoplay blocked", e);
-          isMusicPlaying = false;
-          musicBox.classList.remove("rotating");
-          document.getElementById("musicIcon").innerText = "🔇";
-        });
-    });
-
-    document.getElementById("bgMusic").addEventListener("timeupdate", () => {
-       const bgMusic = document.getElementById("bgMusic");
-       localStorage.setItem(STORAGE_KEY_TIME, bgMusic.currentTime);
-    });
-
-    function toggleMusic() {
-      const bgMusic = document.getElementById("bgMusic");
-      const musicIcon = document.getElementById("musicIcon");
-      const musicBox = document.getElementById("musicBox");
-
-      if (bgMusic.paused) {
-        bgMusic.play();
-        isMusicPlaying = true;
-        musicIcon.innerText = "🔊";
-        musicBox.classList.add("rotating");
-      } else {
-        bgMusic.pause();
-        isMusicPlaying = false;
-        musicIcon.innerText = "🔇";
-        musicBox.classList.remove("rotating");
-      }
-    }
+    // No music playback in gallery - music will resume when returning to index.html
   </script>
 </body>
 
