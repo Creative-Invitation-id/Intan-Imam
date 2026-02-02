@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery - Giofazil & Yoana</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Force scroll enabled for gallery page */
+    .mobile-wrapper {
+      overflow-y: auto !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mobile-wrapper">
+    <audio id="bgMusic" loop>
+      <source src="assets/song.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div id="musicControl" class="music-control" style="display: flex;" onclick="toggleMusic()">
+      <div class="music-box rotating" id="musicBox">
+        <span id="musicIcon">🔊</span>
+      </div>
+    </div>
+
+    <!-- Background from existing design -->
+    <img src="assets/images/background.png" class="page-bg-static" alt="Background" />
+
+    <!-- Full Page Gallery Container -->
+    <div class="gallery-container">
+      <div class="gallery-page">
+        <img src="assets/images/background.png" class="gallery-bg" alt="Background" />
+        <img src="assets/images/galeri/galeri1.png" class="gallery-img" alt="Gallery 1" />
+      </div>
+      <div class="gallery-page">
+        <img src="assets/images/background.png" class="gallery-bg" alt="Background" />
+        <img src="assets/images/galeri/galeri2.png" class="gallery-img" alt="Gallery 2" />
+      </div>
+      <div class="gallery-page">
+        <img src="assets/images/background.png" class="gallery-bg" alt="Background" />
+        <img src="assets/images/galeri/galeri3.png" class="gallery-img" alt="Gallery 3" />
+      </div>
+      <div class="gallery-page">
+        <img src="assets/images/background.png" class="gallery-bg" alt="Background" />
+        <img src="assets/images/galeri/galeri4.png" class="gallery-img" alt="Gallery 4" />
+      </div>
+    </div>
+
+    <!-- Floating Back Button -->
+    <a href="index.html" class="btn-back-floating">KEMBALI</a>
+  </div>
+
+  <script>
+    const STORAGE_KEY_TIME = "wedding_invitation_music_time";
+    let isMusicPlaying = false; 
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const bgMusic = document.getElementById("bgMusic");
+      const musicBox = document.getElementById("musicBox");
+      const savedTime = localStorage.getItem(STORAGE_KEY_TIME);
+      
+      if (savedTime) {
+        bgMusic.currentTime = parseFloat(savedTime);
+      }
+
+      // Auto play since user came from index
+      bgMusic.play()
+        .then(() => {
+          isMusicPlaying = true;
+          musicBox.classList.add("rotating");
+        })
+        .catch(e => {
+          console.log("Autoplay blocked", e);
+          isMusicPlaying = false;
+          musicBox.classList.remove("rotating");
+          document.getElementById("musicIcon").innerText = "🔇";
+        });
+    });
+
+    document.getElementById("bgMusic").addEventListener("timeupdate", () => {
+       const bgMusic = document.getElementById("bgMusic");
+       localStorage.setItem(STORAGE_KEY_TIME, bgMusic.currentTime);
+    });
+
+    function toggleMusic() {
+      const bgMusic = document.getElementById("bgMusic");
+      const musicIcon = document.getElementById("musicIcon");
+      const musicBox = document.getElementById("musicBox");
+
+      if (bgMusic.paused) {
+        bgMusic.play();
+        isMusicPlaying = true;
+        musicIcon.innerText = "🔊";
+        musicBox.classList.add("rotating");
+      } else {
+        bgMusic.pause();
+        isMusicPlaying = false;
+        musicIcon.innerText = "🔇";
+        musicBox.classList.remove("rotating");
+      }
+    }
+  </script>
+</body>
+
+</html>
