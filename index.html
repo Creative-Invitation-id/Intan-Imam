@@ -349,9 +349,8 @@
           const bgMusic = document.getElementById("bgMusic");
           const musicControl = document.getElementById("musicControl");
 
-          // Restore saved time if available, otherwise 0
-          const savedTime = localStorage.getItem(STORAGE_KEY_TIME);
-          bgMusic.currentTime = savedTime ? parseFloat(savedTime) : 0;
+          // Always start from the beginning
+          bgMusic.currentTime = 0;
 
           bgMusic
             .play()
