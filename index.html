@@ -209,7 +209,7 @@
             </div>
 
             <div id="p8Div3" class="section-part-3 p8-part-bottom" style="opacity: 0">
-              <button class="btn-gallery">Buka Galeri</button>
+              <button class="btn-gallery" onclick="window.location.href='gallery.html'">Buka Galeri</button>
             </div>
           </div>
 
@@ -326,8 +326,11 @@
 
         // 1. Fungsi khusus yang dipicu oleh tombol "Open Invitation"
         function openInvitation() {
-          // Jalankan navigasi ke halaman pertama
-          goToPage(1);
+          // Enable Scroll
+          document.querySelector('.mobile-wrapper').style.overflowY = 'auto';
+
+          // Jalankan navigasi ke halaman kedua (Mempelai)
+          document.getElementById('page2').scrollIntoView({ behavior: 'smooth' });
 
           // Jalankan musik (Ini aman karena dipicu langsung oleh klik tombol)
           const bgMusic = document.getElementById("bgMusic");
@@ -396,316 +399,160 @@
           }
         });
 
-        let currentPageIndex = 0; // Track current page
-
-        // Dedicated function for horizontal transitions between slides 3 and 4
-        function goToPageHorizontal(targetIndex) {
-          const container = document.getElementById("pagesContainer");
-          const page3 = document.getElementById("page3");
-          const page4 = document.getElementById("page4");
-
-          // Add horizontal-mode to disable vertical scroll transition
-          container.classList.add('horizontal-mode');
-
-          // Reset any previous horizontal classes
-          page3.classList.remove('slide-to-left', 'slide-from-left');
-          page4.classList.remove('slide-to-right', 'slide-from-right');
-
-          if (targetIndex === 3) {
-            // Going from slide 3 to slide 4 (left to right)
-            currentPageIndex = 3;
-
-            // Position container at slide 3
-            container.style.transform = `translateY(-${2 * (100 / 9)}%)`;
-
-            // Set initial positions
-            page3.style.transform = 'translateX(0)';
-            page4.style.transform = 'translateX(100%)';
-
-            // Start animation
-            setTimeout(() => {
-              page3.classList.add('slide-to-left');
-              page4.classList.add('slide-from-right');
-              page3.style.transform = 'translateX(-100%)';
-              page4.style.transform = 'translateX(0)';
-            }, 50);
-
-            // Clean up after animation
-            setTimeout(() => {
-              page3.classList.remove('slide-to-left');
-              page4.classList.remove('slide-from-right');
-              container.classList.remove('horizontal-mode');
-              page3.style.transform = '';
-              page4.style.transform = '';
-              container.style.transform = `translateY(-${3 * (100 / 9)}%)`;
-
-              // Trigger slide 4 animations
-              const div1 = document.getElementById("p4Div1");
-              const div2 = document.getElementById("p4Div2");
-              const div3 = document.getElementById("p4Div3");
-              const nav4 = document.getElementById("btnNav4");
-
-              [div1, div2, div3].forEach((el) => el.classList.remove("anim-slide-right"));
-              nav4.classList.remove("anim-fade-center");
-
-              setTimeout(() => {
-                div1.classList.add("anim-slide-right");
-                setTimeout(() => {
-                  div2.classList.add("anim-slide-right");
-                  setTimeout(() => {
-                    div3.classList.add("anim-slide-right");
-                    setTimeout(() => {
-                      nav4.classList.add("anim-fade-center");
-                    }, 400);
-                  }, 400);
-                }, 400);
-              }, 100);
-            }, 1050);
-          } else if (targetIndex === 2) {
-            // Going from slide 4 to slide 3 (right to left)
-            currentPageIndex = 2;
-
-            // Position container at slide 4
-            container.style.transform = `translateY(-${3 * (100 / 9)}%)`;
-
-            // Set initial positions
-            page4.style.transform = 'translateX(0)';
-            page3.style.transform = 'translateX(-100%)';
-
-            // Start animation
-            setTimeout(() => {
-              page4.classList.add('slide-to-right');
-              page3.classList.add('slide-from-left');
-              page4.style.transform = 'translateX(100%)';
-              page3.style.transform = 'translateX(0)';
-            }, 50);
-
-            // Clean up after animation
-            setTimeout(() => {
-              page4.classList.remove('slide-to-right');
-              page3.classList.remove('slide-from-left');
-              container.classList.remove('horizontal-mode');
-              page3.style.transform = '';
-              page4.style.transform = '';
-              container.style.transform = `translateY(-${2 * (100 / 9)}%)`;
-
-              // Trigger slide 3 animations
-              const div1 = document.getElementById("p3Div1");
-              const div2 = document.getElementById("p3Div2");
-              const div3 = document.getElementById("p3Div3");
-              const nav = document.getElementById("btnNav3");
-
-              [div1, div2, div3].forEach((el) => el.classList.remove("anim-slide-left"));
-              nav.classList.remove("anim-fade-center");
-
-              setTimeout(() => {
-                div1.classList.add("anim-slide-left");
-                setTimeout(() => {
-                  div2.classList.add("anim-slide-left");
-                  setTimeout(() => {
-                    div3.classList.add("anim-slide-left");
-                    setTimeout(() => {
-                      nav.classList.add("anim-fade-center");
-                    }, 400);
-                  }, 400);
-                }, 400);
-              }, 100);
-            }, 1050);
-          }
-        }
-
-        function goToPage(index) {
-          const container = document.getElementById("pagesContainer");
-          currentPageIndex = index;
-          container.style.transform = `translateY(-${index * (100 / 9)}%)`;
-
-          /* ================= PAGE 2 (Index 1) ================= */
-          /* ================= PAGE 2 (Index 1) ================= */
-          if (index === 1) {
+        // --- SCROLL ANIMATION LOGIC ---
+        
+        const animationHandlers = {
+          page1: () => {
+             // Cover animations (if needed) - typically handled by CSS on load, but we can enforce here
+             const coverContent = document.querySelector('.cover-content'); 
+             if(coverContent && !coverContent.classList.contains('anim-fade')) {
+                coverContent.classList.add('anim-fade');
+             }
+          },
+          page2: () => {
             const content = document.getElementById("content2Wrapper");
-            const button = document.getElementById("btnNext2");
             // Select all new decorative elements in Page 2
             const elementsToAnimate = document.querySelectorAll("#page2 .page2-bg, #page2 .page2-frame-top, #page2 .page2-frame-left, #page2 .page2-frame-right");
 
-            content.classList.remove("anim-fade");
-            button.classList.remove("anim-fade-center");
-            elementsToAnimate.forEach(el => el.classList.remove("anim-fade"));
+            if(content.classList.contains("anim-fade")) return; // Already animated
 
             setTimeout(() => {
               elementsToAnimate.forEach(el => el.classList.add("anim-fade"));
               content.classList.add("anim-fade");
-              button.classList.add("anim-fade-center");
-            }, 600);
-          }
+            }, 300);
+          },
+          page3: () => {
+             const div1 = document.getElementById("p3Div1");
+             const div2 = document.getElementById("p3Div2");
+             const div3 = document.getElementById("p3Div3");
+             
+             if(div1.classList.contains("anim-slide-left")) return;
 
-          /* ================= PAGE 3 (Index 2) ================= */
-          if (index === 2) {
-            const div1 = document.getElementById("p3Div1");
-            const div2 = document.getElementById("p3Div2");
-            const div3 = document.getElementById("p3Div3");
-            const nav = document.getElementById("btnNav3");
-
-            [div1, div2, div3].forEach((el) => el.classList.remove("anim-slide-left"));
-            nav.classList.remove("anim-fade-center");
-
-            setTimeout(() => {
-              div1.classList.add("anim-slide-left");
-              setTimeout(() => {
-                div2.classList.add("anim-slide-left");
-                setTimeout(() => {
-                  div3.classList.add("anim-slide-left");
-                  setTimeout(() => {
-                    nav.classList.add("anim-fade-center");
-                  }, 400);
-                }, 400);
-              }, 400);
-            }, 600);
-          }
-
-          /* ================= PAGE 4 (Index 3) ================= */
-          if (index === 3) {
+             setTimeout(() => {
+               div1.classList.add("anim-slide-left");
+               setTimeout(() => {
+                 div2.classList.add("anim-slide-left");
+                 setTimeout(() => {
+                   div3.classList.add("anim-slide-left");
+                 }, 400);
+               }, 400);
+             }, 300);
+          },
+          page4: () => {
             const div1 = document.getElementById("p4Div1");
             const div2 = document.getElementById("p4Div2");
             const div3 = document.getElementById("p4Div3");
-            const nav4 = document.getElementById("btnNav4");
 
-            [div1, div2, div3].forEach((el) => el.classList.remove("anim-slide-right"));
-            nav4.classList.remove("anim-fade-center");
+            if(div1.classList.contains("anim-slide-right")) return;
 
             setTimeout(() => {
-              div1.classList.add("anim-slide-right");
-              setTimeout(() => {
-                div2.classList.add("anim-slide-right");
-                setTimeout(() => {
-                  div3.classList.add("anim-slide-right");
-                  setTimeout(() => {
-                    nav4.classList.add("anim-fade-center");
-                  }, 400);
-                }, 400);
-              }, 400);
-            }, 600);
+               div1.classList.add("anim-slide-right");
+               setTimeout(() => {
+                 div2.classList.add("anim-slide-right");
+                 setTimeout(() => {
+                   div3.classList.add("anim-slide-right");
+                 }, 400);
+               }, 400);
+             }, 300);
+          },
+          page5: () => {
+             const div1 = document.getElementById("p5Div1");
+             const div2 = document.getElementById("p5Div2");
+
+             if(div1.classList.contains("anim-fade")) return;
+
+             setTimeout(() => {
+               div1.classList.add("anim-fade");
+               setTimeout(() => {
+                 div2.classList.add("anim-fade");
+               }, 400);
+             }, 300);
+          },
+          page6: () => {
+             const div1 = document.getElementById("p6Div1");
+             const div2 = document.getElementById("p6Div2");
+             
+             if(div1.classList.contains("anim-fade")) return;
+             
+             setTimeout(() => {
+               div1.classList.add("anim-fade");
+               setTimeout(() => {
+                 div2.classList.add("anim-fade");
+               }, 400);
+             }, 300);
+          },
+          page7: () => {
+             const content = document.getElementById("p7Content");
+             if(content.classList.contains("anim-zoom")) return;
+             setTimeout(() => content.classList.add("anim-zoom"), 300);
+          },
+          page8: () => {
+             const div1 = document.getElementById("p8Div1");
+             const div2 = document.getElementById("p8Div2");
+             const div3 = document.getElementById("p8Div3");
+             
+             if(div1.classList.contains("anim-slide-up")) return;
+
+             setTimeout(() => {
+               div1.classList.add("anim-slide-up");
+               setTimeout(() => {
+                 div2.classList.add("anim-slide-up");
+                 setTimeout(() => {
+                   div3.classList.add("anim-slide-up");
+                 }, 400);
+               }, 400);
+             }, 300);
+          },
+          page9: () => {
+             const div1 = document.getElementById("p9Div1");
+             const div2 = document.getElementById("p9Div2");
+
+             if(div1.classList.contains("anim-fade")) return;
+
+             setTimeout(() => {
+               div1.classList.add("anim-fade");
+               setTimeout(() => {
+                 div2.classList.add("anim-fade");
+               }, 400);
+             }, 300);
+          },
+          page10: () => {
+             const div1 = document.getElementById("p10Div1");
+             const div2 = document.getElementById("p10Div2");
+             
+             if(div1.classList.contains("anim-fade")) return;
+             
+             setTimeout(() => {
+                 div1.classList.add("anim-fade");
+                 setTimeout(() => {
+                     if(div2) div2.classList.add("anim-fade");
+                 }, 400);
+             }, 300);
           }
+        };
 
-          /* ================= PAGE 5 (Index 4) ================= */
-          if (index === 4) {
-            const div1 = document.getElementById("p5Div1");
-            const div2 = document.getElementById("p5Div2");
-            const nav5 = document.getElementById("btnNav5");
+        const observerOptions = {
+          root: null,
+          threshold: 0.2 // Trigger when 20% visible
+        };
 
-            [div1, div2].forEach((el) => el.classList.remove("anim-fade"));
-            nav5.classList.remove("anim-fade-center");
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const pageId = entry.target.id;
+              if (animationHandlers[pageId]) {
+                animationHandlers[pageId]();
+              }
+            }
+          });
+        }, observerOptions);
 
-            setTimeout(() => {
-              div1.classList.add("anim-fade");
-              setTimeout(() => {
-                div2.classList.add("anim-fade");
-                setTimeout(() => {
-                  nav5.classList.add("anim-fade-center");
-                }, 500);
-              }, 500);
-            }, 400);
-          }
-
-          /* ================= PAGE 6 (Index 5) ================= */
-          if (index === 5) {
-            const div1 = document.getElementById("p6Div1");
-            const div2 = document.getElementById("p6Div2");
-            const nav6 = document.getElementById("btnNav6");
-
-            [div1, div2].forEach((el) => el.classList.remove("anim-fade"));
-            nav6.classList.remove("anim-fade-center");
-
-            setTimeout(() => {
-              div1.classList.add("anim-fade");
-              setTimeout(() => {
-                div2.classList.add("anim-fade");
-                setTimeout(() => {
-                  nav6.classList.add("anim-fade-center");
-                }, 500);
-              }, 500);
-            }, 400);
-          }
-
-          /* ================= PAGE 7 (Index 6) ================= */
-          if (index === 6) {
-            const content = document.getElementById("p7Content");
-            const nav7 = document.getElementById("btnNav7");
-
-            content.classList.remove("anim-fade");
-            nav7.classList.remove("anim-fade-center");
-
-            setTimeout(() => {
-              content.classList.add("anim-fade");
-              setTimeout(() => {
-                nav7.classList.add("anim-fade-center");
-              }, 600);
-            }, 400);
-          }
-
-          /* ================= PAGE 8 (Index 7) ================= */
-          if (index === 7) {
-            const div1 = document.getElementById("p8Div1");
-            const div2 = document.getElementById("p8Div2");
-            const div3 = document.getElementById("p8Div3");
-            const nav8 = document.getElementById("btnNav8");
-
-            [div1, div2, div3].forEach((el) => el.classList.remove("anim-fade"));
-            nav8.classList.remove("anim-fade-center");
-
-            setTimeout(() => {
-              div1.classList.add("anim-fade");
-              setTimeout(() => {
-                div2.classList.add("anim-fade");
-                setTimeout(() => {
-                  div3.classList.add("anim-fade");
-                  setTimeout(() => {
-                    nav8.classList.add("anim-fade-center");
-                  }, 400);
-                }, 500);
-              }, 500);
-            }, 400);
-          }
-
-          /* ================= PAGE 9 (Index 8) ================= */
-          if (index === 8) {
-            const div1 = document.getElementById("p9Div1");
-            const div2 = document.getElementById("p9Div2");
-            const nav9 = document.getElementById("btnNav9");
-
-            [div1, div2].forEach((el) => el.classList.remove("anim-fade"));
-            nav9.classList.remove("anim-fade-center");
-
-            setTimeout(() => {
-              div1.classList.add("anim-fade");
-              setTimeout(() => {
-                div2.classList.add("anim-fade");
-                setTimeout(() => {
-                  nav9.classList.add("anim-fade-center");
-                }, 500);
-              }, 500);
-            }, 400);
-          }
-
-          /* ================= PAGE 10 (Index 9) ================= */
-          if (index === 9) {
-            const div1 = document.getElementById("p10Div1");
-            const div2 = document.getElementById("p10Div2");
-            const nav10 = document.getElementById("btnNav10");
-
-            [div1, div2].forEach((el) => el.classList.remove("anim-fade"));
-            nav10.classList.remove("anim-fade-center");
-
-            setTimeout(() => {
-              div1.classList.add("anim-fade");
-              setTimeout(() => {
-                div2.classList.add("anim-fade");
-                setTimeout(() => {
-                  nav10.classList.add("anim-fade-center");
-                }, 500);
-              }, 500);
-            }, 400);
-          }
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+           // Start observing all pages
+           document.querySelectorAll('.page').forEach(page => {
+             observer.observe(page);
+           });
+        });
 
         // --- Save The Date Countdown Logic ---
         function startCountdown() {
