@@ -70,9 +70,18 @@ body {
   /* Disable vertical scroll during horizontal transition */
 }
 
+.pages.horizontal-mode #page3,
+.pages.horizontal-mode #page4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 11.1111%;
+}
+
 #page3,
 #page4 {
-  transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 #page3.slide-to-left {
@@ -80,11 +89,11 @@ body {
 }
 
 #page3.slide-from-left {
-  transform: translateX(0);
+  transform: translateX(-100%);
 }
 
 #page4.slide-from-right {
-  transform: translateX(0);
+  transform: translateX(100%);
 }
 
 #page4.slide-to-right {
@@ -304,7 +313,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 20px;
+  font-weight: bold;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: 0.3s;
 }
@@ -312,7 +322,7 @@ body {
 .btn-next-round:hover,
 .btn-nav-small:hover {
   background-color: #5a0016;
-  transform: translateX(-50%) scale(1.1);
+  transform: scale(1.1);
 }
 
 /* --- STATIC BACKGROUND (NO FADE) --- */
@@ -969,11 +979,11 @@ body {
 
 .bank-card {
   width: 100%;
-  max-width: 280px;
+  max-width: 16rem;
   background: transparent;
   border: none;
   border-radius: 0;
-  padding: 5px 0;
+  padding: 0.3rem 0;
   text-align: center;
   margin: 0 auto;
 }
@@ -981,8 +991,8 @@ body {
 .bank-name {
   color: #fff;
   font-family: "Playfair", serif;
-  font-size: 15px;
-  margin-bottom: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -993,33 +1003,37 @@ body {
   justify-content: space-between;
   background: #cc9b59;
   /* Goldish Beige */
-  padding: 10px 20px;
-  border-radius: 50px;
+  padding: 0.6rem 1rem;
+  border-radius: 3rem;
   width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  gap: 8px;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  gap: 0.5rem;
 }
 
 .account-number {
-  font-family: sans-serif;
-  font-size: 14px;
+  font-family: "Playfair", serif;
+  font-size: 0.85rem;
   font-weight: 500;
   color: #fff;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03em;
+  flex: 1;
 }
 
 .btn-copy {
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 5px 12px;
-  border-radius: 20px;
+  padding: 0.35rem 0.6rem;
+  border-radius: 1.25rem;
   font-family: "Playfair", serif;
-  font-size: 10px;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: 0.3s;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  flex-shrink: 0;
 }
 
 .btn-copy:hover {
@@ -1287,7 +1301,6 @@ body {
 .countdown-number {
   font-family: "Playfair", serif;
   font-size: 1.5rem;
-  font-weight: bold;
   color: #fff;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   line-height: 1.1;
