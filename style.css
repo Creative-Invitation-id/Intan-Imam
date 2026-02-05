@@ -159,31 +159,32 @@ body {
   position: absolute;
   left: 0;
   bottom: 0;
-  /* Anchor to bottom */
   top: auto;
-  /* Remove top positioning */
-  transform: none;
-  /* Remove centering transform */
   width: 45%;
-  /* Increased from 35% to match reference */
   height: auto;
   z-index: 16;
-  /* Above Gunungan? Or below? Let's try overlapping */
   pointer-events: none;
+}
+
+/* Specific animation for frame-side-left to override anim-fade */
+.frame-side-left.anim-fade {
+  animation: fadeUp 1s ease-out forwards, driftRightLeft 4s ease-in-out infinite !important;
 }
 
 .frame-side-right {
   position: absolute;
   right: 0;
   bottom: 0;
-  /* Anchor to bottom */
   top: auto;
-  transform: none;
   width: 45%;
-  /* Increased from 35% to match reference */
   height: auto;
   z-index: 16;
   pointer-events: none;
+}
+
+/* Specific animation for frame-side-right to override anim-fade */
+.frame-side-right.anim-fade {
+  animation: fadeUp 1s ease-out forwards, driftLeftRight 4s ease-in-out infinite !important;
 }
 
 .frame-bottom-gunungan {
@@ -1638,35 +1639,47 @@ body {
   pointer-events: none;
 }
 
+/* --- PAGE 10 POSITIONING CONTEXT --- */
+#page10 {
+  position: relative;
+}
+
 /* --- CREATIVE INVITATION BUTTON --- */
 .btn-creative {
+  /* ADJUST SIZE: Change --btn-scale value between 0.8 (80%) to 1.0 (100%) */
+  --btn-scale: 0.75;
+  /* Default 90%, ubah sesuai keinginan */
+
+  position: absolute;
+  bottom: 2dvh;
+  left: 50%;
+  transform: translateX(-50%) scale(var(--btn-scale));
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   background-color: white;
-  padding: 8px 20px;
-  border-radius: 50px;
+  padding: 0.6rem 1.5rem;
+  border-radius: 3rem;
   text-decoration: none;
   color: #333;
-  /* Dark gray for text like in image */
   font-family: inherit;
-  /* Use default sans/serif mix or specify */
   font-weight: bold;
-  font-size: 13px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  margin-top: 15px;
+  font-size: clamp(0.75rem, 3vw, 0.9rem);
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  z-index: 20;
+  z-index: 100;
+  transform-origin: center bottom;
 }
 
 .btn-creative:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transform: translateX(-50%) scale(var(--btn-scale)) translateY(-0.125rem);
+  box-shadow: 0 0.375rem 0.9375rem rgba(0, 0, 0, 0.2);
 }
 
 .btn-creative svg {
   color: #333;
-  /* Icon color matches text */
+  width: 1rem;
+  height: 1rem;
 }
 
 /* Ensure Page 10 parts allow for button visibility if overflow hidden */
