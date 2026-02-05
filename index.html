@@ -456,12 +456,21 @@
           const bgMusic = document.getElementById("bgMusic");
           const musicControl = document.getElementById("musicControl");
 
-          // Always start from 2:06
-          bgMusic.currentTime = MUSIC_START_TIME;
+          // For iOS Safari: Load metadata first, then set time
+          bgMusic.load();
+
+          // Set time after metadata is loaded (iOS compatibility)
+          bgMusic.addEventListener('loadedmetadata', function setStartTime() {
+            bgMusic.currentTime = MUSIC_START_TIME;
+          }, { once: true });
 
           bgMusic
             .play()
             .then(() => {
+              // Double-check currentTime after play starts (iOS fix)
+              if (bgMusic.currentTime < MUSIC_START_TIME) {
+                bgMusic.currentTime = MUSIC_START_TIME;
+              }
               isMusicPlaying = true;
               musicControl.style.display = "flex"; // Munculkan tombol music
               document.getElementById("musicBox").classList.add("rotating");
@@ -479,6 +488,10 @@
           const musicBox = document.getElementById("musicBox");
 
           if (bgMusic.paused) {
+            // iOS fix: ensure currentTime is set before play
+            if (bgMusic.currentTime < MUSIC_START_TIME) {
+              bgMusic.currentTime = MUSIC_START_TIME;
+            }
             bgMusic.play();
             isMusicPlaying = true;
             musicControl.innerText = "🔊";
@@ -724,16 +737,27 @@
               // Show control
               musicControl.style.display = 'flex';
 
-              // Resume from saved time if available, otherwise start from 2:06
+              // Determine target time
+              const targetTime = savedTime ? parseFloat(savedTime) : MUSIC_START_TIME;
+
+              // iOS Safari fix: Load metadata first
+              bgMusic.load();
+
+              // Set time after metadata loaded
+              bgMusic.addEventListener('loadedmetadata', function setResumeTime() {
+                bgMusic.currentTime = targetTime;
+              }, { once: true });
+
+              // Clear saved time if it was used
               if (savedTime) {
-                bgMusic.currentTime = parseFloat(savedTime);
-                // Clear saved time after using it
                 localStorage.removeItem(STORAGE_KEY_TIME);
-              } else {
-                bgMusic.currentTime = MUSIC_START_TIME;
               }
 
               bgMusic.play().then(() => {
+                // Double-check currentTime after play starts (iOS fix)
+                if (Math.abs(bgMusic.currentTime - targetTime) > 1) {
+                  bgMusic.currentTime = targetTime;
+                }
                 isMusicPlaying = true;
                 document.getElementById("musicBox").classList.add("rotating");
                 document.getElementById("musicIcon").innerText = "🔊";
