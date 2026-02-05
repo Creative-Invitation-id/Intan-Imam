@@ -768,6 +768,23 @@
                     console.log("Auto-resume blocked by browser policy", e);
                     // Still show button so they can click it
                     document.getElementById("musicIcon").innerText = "🔇";
+                    
+                    // IOS FALLBACK: Resume on FIRST interaction (touch/scroll/click)
+                    const resumeOnInteract = () => {
+                        bgMusic.play().then(() => {
+                           isMusicPlaying = true;
+                           document.getElementById("musicBox").classList.add("rotating");
+                           document.getElementById("musicIcon").innerText = "🔊";
+                        });
+                        // Remove listeners after first attempt
+                        ['click', 'touchstart', 'scroll'].forEach(evt => 
+                            document.removeEventListener(evt, resumeOnInteract)
+                        );
+                    };
+
+                    ['click', 'touchstart', 'scroll'].forEach(evt => 
+                        document.addEventListener(evt, resumeOnInteract, { once: true })
+                    );
                   });
               } else {
                   // If previously paused, stay paused but update UI
