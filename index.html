@@ -359,7 +359,7 @@
             // LIMIT DURATION: Stop after 7 seconds (adjust as needed)
             setTimeout(() => {
               finishIntro();
-            }, 10000);
+            }, 7000);
           }).catch(error => {
             console.log("Auto-play blocked", error);
             // If blocked, just finish intro immediately so user isn't stuck on black screen
@@ -389,7 +389,7 @@
           // Only play intro if not deep linking. 
           // Added DELAY of 2000ms (2 seconds) so it doesn't start too abruptly.
           document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(playIntro, 0);
+            playIntro();
           });
         } else {
           document.addEventListener('DOMContentLoaded', () => {
