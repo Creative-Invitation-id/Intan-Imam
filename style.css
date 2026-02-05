@@ -598,7 +598,7 @@ body {
 
 .p10-part-bottom {
   flex: 1;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding-top: 5%;
 }
@@ -1633,4 +1633,39 @@ body {
 .fade-out {
   opacity: 0;
   pointer-events: none;
+}
+
+/* --- CREATIVE INVITATION BUTTON --- */
+.btn-creative {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: #333; /* Dark gray for text like in image */
+  font-family: inherit; /* Use default sans/serif mix or specify */
+  font-weight: bold;
+  font-size: 13px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  margin-top: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 20;
+}
+
+.btn-creative:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.btn-creative svg {
+  color: #333; /* Icon color matches text */
+}
+
+/* Ensure Page 10 parts allow for button visibility if overflow hidden */
+.p10-part-bottom {
+  overflow: visible !important; 
+  flex-direction: column;
+  align-items: center !important; /* Force center alignment */
 }
