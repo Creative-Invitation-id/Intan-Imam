@@ -405,13 +405,16 @@
 
         const MUSIC_START_TIME = 126; // Start from 2:06 (126 seconds)
         const STORAGE_KEY_TIME = "wedding_invitation_music_time"; // For saving time when going to gallery
+        const STORAGE_KEY_PLAYING = "wedding_invitation_music_playing"; // For saving play/pause state
         let isMusicPlaying = false; // Track intended state
 
         // Function to save music time and go to gallery
         function saveTimeAndGoToGallery() {
           const bgMusic = document.getElementById("bgMusic");
-          // Save current music time to localStorage
+          // Save current music time
           localStorage.setItem(STORAGE_KEY_TIME, bgMusic.currentTime);
+          // Save playing state (true if playing, false if paused)
+          localStorage.setItem(STORAGE_KEY_PLAYING, !bgMusic.paused);
           // Navigate to gallery
           window.location.href = 'gallery.html';
         }
@@ -729,10 +732,11 @@
                 targetElement.scrollIntoView({ behavior: 'smooth' });
               }, 100);
 
-              // FORCE RESUME MUSIC
+              // RESUME MUSIC LOGIC
               const musicControl = document.getElementById("musicControl");
               const bgMusic = document.getElementById("bgMusic");
               const savedTime = localStorage.getItem(STORAGE_KEY_TIME);
+              const savedPlaying = localStorage.getItem(STORAGE_KEY_PLAYING); // Check saved state
 
               // Show control
               musicControl.style.display = 'flex';
@@ -748,24 +752,35 @@
                 bgMusic.currentTime = targetTime;
               }, { once: true });
 
-              // Clear saved time if it was used
-              if (savedTime) {
-                localStorage.removeItem(STORAGE_KEY_TIME);
+              // Determine if we should play
+              const shouldPlay = (savedPlaying === "true");
+
+              if (shouldPlay) {
+                  bgMusic.play().then(() => {
+                    // Double-check currentTime after play starts (iOS fix)
+                    if (Math.abs(bgMusic.currentTime - targetTime) > 1) {
+                      bgMusic.currentTime = targetTime;
+                    }
+                    isMusicPlaying = true;
+                    document.getElementById("musicBox").classList.add("rotating");
+                    document.getElementById("musicIcon").innerText = "🔊";
+                  }).catch(e => {
+                    console.log("Auto-resume blocked by browser policy", e);
+                    // Still show button so they can click it
+                    document.getElementById("musicIcon").innerText = "🔇";
+                  });
+              } else {
+                  // If previously paused, stay paused but update UI
+                  isMusicPlaying = false;
+                  document.getElementById("musicBox").classList.remove("rotating");
+                  document.getElementById("musicIcon").innerText = "🔇";
+                  // Ensure time is set even if not playing
+                 // bgMusic.currentTime = targetTime; (Already set by loadedmetadata listener)
               }
 
-              bgMusic.play().then(() => {
-                // Double-check currentTime after play starts (iOS fix)
-                if (Math.abs(bgMusic.currentTime - targetTime) > 1) {
-                  bgMusic.currentTime = targetTime;
-                }
-                isMusicPlaying = true;
-                document.getElementById("musicBox").classList.add("rotating");
-                document.getElementById("musicIcon").innerText = "🔊";
-              }).catch(e => {
-                console.log("Auto-resume blocked by browser policy", e);
-                // Still show button so they can click it
-                document.getElementById("musicIcon").innerText = "🔇";
-              });
+              // Clear saved keys
+              localStorage.removeItem(STORAGE_KEY_TIME);
+              localStorage.removeItem(STORAGE_KEY_PLAYING);
             }
           }
         });
