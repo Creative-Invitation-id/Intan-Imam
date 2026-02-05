@@ -349,6 +349,10 @@
           // Ensure overlay is visible initially
           overlay.style.display = 'flex';
 
+          video.currentTime = 0;   // ⬅️ RESET KE DETIK 0
+          video.load();            // ⬅️ paksa reload frame awal
+
+
           // Try to play
           video.play().then(() => {
             console.log("Intro video playing");
@@ -385,7 +389,7 @@
           // Only play intro if not deep linking. 
           // Added DELAY of 2000ms (2 seconds) so it doesn't start too abruptly.
           document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(playIntro, 2000); 
+            setTimeout(playIntro, 0);
           });
         } else {
           document.addEventListener('DOMContentLoaded', () => {
