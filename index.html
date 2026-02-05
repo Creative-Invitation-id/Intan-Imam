@@ -382,8 +382,11 @@
 
         // Start intro immediately
         if (!window.location.hash) {
-          // Only play intro if not deep linking
-          document.addEventListener('DOMContentLoaded', playIntro);
+          // Only play intro if not deep linking. 
+          // Added DELAY of 2000ms (2 seconds) so it doesn't start too abruptly.
+          document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(playIntro, 2000); 
+          });
         } else {
           document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('introOverlay').style.display = 'none';
