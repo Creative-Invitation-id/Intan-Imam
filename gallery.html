@@ -42,11 +42,95 @@
     </div>
 
     <!-- Floating Back Button -->
-    <a href="index.html#page8" class="btn-back-floating">KEMBALI</a>
+    <a href="index.html#page8" class="btn-back-floating" onclick="saveMusicTime()">KEMBALI</a>
+  </div>
+
+  <!-- Background Music (same as index.html) -->
+  <audio id="bgMusic" loop>
+    <source src="assets/song.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Music Control Button -->
+  <div id="musicControl" class="music-control" onclick="toggleMusic()">
+    <div id="musicBox" class="music-box">
+      <span id="musicIcon">🔊</span>
+    </div>
   </div>
 
   <script>
-    // No music playback in gallery - music will resume when returning to index.html
+    const MUSIC_START_TIME = 126; // Start from 2:06 (126 seconds)
+    const STORAGE_KEY_TIME = "wedding_invitation_music_time";
+    const STORAGE_KEY_PLAYING = "wedding_invitation_music_playing";
+    let isMusicPlaying = false;
+
+    // Resume music from saved time
+    document.addEventListener('DOMContentLoaded', () => {
+      const bgMusic = document.getElementById("bgMusic");
+      const musicControl = document.getElementById("musicControl");
+      const musicBox = document.getElementById("musicBox");
+      const musicIcon = document.getElementById("musicIcon");
+
+      // Get saved state
+      const savedTime = localStorage.getItem(STORAGE_KEY_TIME);
+      const savedPlaying = localStorage.getItem(STORAGE_KEY_PLAYING);
+
+      // Show music control
+      musicControl.style.display = 'flex';
+
+      // Set time
+      const targetTime = savedTime ? parseFloat(savedTime) : MUSIC_START_TIME;
+      bgMusic.currentTime = targetTime;
+
+      // Loop back to start time when music ends
+      bgMusic.addEventListener('timeupdate', () => {
+        if (bgMusic.currentTime >= bgMusic.duration - 0.5) {
+          bgMusic.currentTime = MUSIC_START_TIME;
+        }
+      });
+
+      // Auto-play if it was playing before
+      if (savedPlaying === "true") {
+        bgMusic.play().then(() => {
+          isMusicPlaying = true;
+          musicBox.classList.add("rotating");
+          musicIcon.innerText = "🔊";
+        }).catch(e => {
+          console.log("Autoplay blocked", e);
+          musicIcon.innerText = "🔇";
+        });
+      } else {
+        musicIcon.innerText = "🔇";
+      }
+    });
+
+    // Toggle music play/pause
+    function toggleMusic() {
+      const bgMusic = document.getElementById("bgMusic");
+      const musicIcon = document.getElementById("musicIcon");
+      const musicBox = document.getElementById("musicBox");
+
+      if (bgMusic.paused) {
+        bgMusic.play();
+        isMusicPlaying = true;
+        musicIcon.innerText = "🔊";
+        musicBox.classList.add("rotating");
+      } else {
+        bgMusic.pause();
+        isMusicPlaying = false;
+        musicIcon.innerText = "🔇";
+        musicBox.classList.remove("rotating");
+      }
+    }
+
+    // Save music time before leaving
+    function saveMusicTime() {
+      const bgMusic = document.getElementById("bgMusic");
+      localStorage.setItem(STORAGE_KEY_TIME, bgMusic.currentTime);
+      localStorage.setItem(STORAGE_KEY_PLAYING, !bgMusic.paused);
+    }
+
+    // Also save on page unload
+    window.addEventListener('beforeunload', saveMusicTime);
   </script>
 </body>
 
