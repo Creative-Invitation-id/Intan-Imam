@@ -77,9 +77,16 @@
       // Show music control
       musicControl.style.display = 'flex';
 
-      // Set time
+      // Determine target time
       const targetTime = savedTime ? parseFloat(savedTime) : MUSIC_START_TIME;
-      bgMusic.currentTime = targetTime;
+
+      // iOS Safari fix: Load metadata first
+      bgMusic.load();
+
+      // Set time after metadata loaded
+      bgMusic.addEventListener('loadedmetadata', function setGalleryTime() {
+        bgMusic.currentTime = targetTime;
+      }, { once: true });
 
       // Loop back to start time when music ends
       bgMusic.addEventListener('timeupdate', () => {
@@ -91,12 +98,39 @@
       // Auto-play if it was playing before
       if (savedPlaying === "true") {
         bgMusic.play().then(() => {
+          // Double-check currentTime after play starts (iOS fix)
+          if (Math.abs(bgMusic.currentTime - targetTime) > 1) {
+            bgMusic.currentTime = targetTime;
+          }
           isMusicPlaying = true;
           musicBox.classList.add("rotating");
           musicIcon.innerText = "🔊";
         }).catch(e => {
-          console.log("Autoplay blocked", e);
+          console.log("Autoplay blocked on iOS, will resume on first interaction", e);
           musicIcon.innerText = "🔇";
+
+          // iOS FALLBACK: Resume on FIRST user interaction
+          const resumeOnInteract = () => {
+            bgMusic.play().then(() => {
+              // Double-check currentTime
+              if (Math.abs(bgMusic.currentTime - targetTime) > 1) {
+                bgMusic.currentTime = targetTime;
+              }
+              isMusicPlaying = true;
+              musicBox.classList.add("rotating");
+              musicIcon.innerText = "🔊";
+            }).catch(err => console.log("Play failed even after interaction", err));
+
+            // Remove listeners after first attempt
+            ['click', 'touchstart', 'scroll'].forEach(evt =>
+              document.removeEventListener(evt, resumeOnInteract)
+            );
+          };
+
+          // Add listeners for user interaction
+          ['click', 'touchstart', 'scroll'].forEach(evt =>
+            document.addEventListener(evt, resumeOnInteract, { once: true })
+          );
         });
       } else {
         musicIcon.innerText = "🔇";
@@ -110,6 +144,11 @@
       const musicBox = document.getElementById("musicBox");
 
       if (bgMusic.paused) {
+        // iOS fix: ensure currentTime is maintained
+        const currentPos = bgMusic.currentTime;
+        if (currentPos < MUSIC_START_TIME) {
+          bgMusic.currentTime = MUSIC_START_TIME;
+        }
         bgMusic.play();
         isMusicPlaying = true;
         musicIcon.innerText = "🔊";
